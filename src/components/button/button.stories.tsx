@@ -61,11 +61,10 @@ export const AsLink: Story = {
   args: {
     as: 'a',
     children: 'Link that looks like a button',
+    fullWidth: false,
     href: 'https://google.com',
     rel: 'noopener noreferrer',
     target: '_blank',
     variant: 'primary',
-    fullWidth: false,
-    style: { width: 'auto' },
   },
 }

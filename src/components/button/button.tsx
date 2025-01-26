@@ -1,8 +1,10 @@
 import { ComponentPropsWithoutRef, ElementType } from 'react'
+
 import { clsx } from 'clsx'
+
 import s from './button.module.scss'
 
-export type ButtonVariant = 'primary' | 'secondary' | 'outlined' | 'link'
+export type ButtonVariant = 'link' | 'outlined' | 'primary' | 'secondary'
 
 export type ButtonProps<T extends ElementType = 'button'> = {
   as?: T
