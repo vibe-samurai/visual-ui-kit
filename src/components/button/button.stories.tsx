@@ -7,7 +7,7 @@ const meta = {
     onClick: { action: 'clicked' },
     variant: {
       control: { type: 'radio' },
-      options: ['primary', 'secondary', 'tertiary', 'link'],
+      options: ['primary', 'secondary', 'outlined', 'link'],
     },
   },
   component: Button,
@@ -33,11 +33,11 @@ export const Secondary: Story = {
     variant: 'secondary',
   },
 }
-export const Tertiary: Story = {
+export const Outlined: Story = {
   args: {
-    children: 'Tertiary Button',
+    children: 'Outlined Button',
     disabled: false,
-    variant: 'tertiary',
+    variant: 'outlined',
   },
 }
 export const Link: Story = {
@@ -65,5 +65,7 @@ export const AsLink: Story = {
     rel: 'noopener noreferrer',
     target: '_blank',
     variant: 'primary',
+    fullWidth: false,
+    style: { width: 'auto' },
   },
 }

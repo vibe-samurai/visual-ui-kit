@@ -1,12 +1,8 @@
 import { ComponentPropsWithoutRef, ElementType } from 'react'
-
 import { clsx } from 'clsx'
-
 import s from './button.module.scss'
 
-export const buttonVariant = ['icon', 'link', 'primary', 'secondary', 'tertiary'] as const
-
-export type ButtonVariant = (typeof buttonVariant)[number]
+export type ButtonVariant = 'primary' | 'secondary' | 'outlined' | 'link'
 
 export type ButtonProps<T extends ElementType = 'button'> = {
   as?: T

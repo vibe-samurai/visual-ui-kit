@@ -1,44 +1,100 @@
 .button {
-  all: unset;
-
   cursor: pointer;
-
   box-sizing: border-box;
-  padding: 0.5rem 1rem;
+  padding: 6px 24px;
+  border-radius: 2px;
+  min-width: 182px;
+  width: max-content;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-semi-bold);
+  font-size: var(--font-size-m);
+  color: var(--Light-100);
+  transition: all 0.2s ease 0s;
+  &:disabled {
+    cursor: auto;
+  }
+}
 
-  border-radius: 0.25rem;
+.primary {
+  background-color: var(--Primary-500);
+  &:active {
+    background-color: var(--Primary-700);
+    color: var(--Light-500);
+  }
+  &:hover {
+    background-color: var(--Primary-100);
+  }
+  &:focus {
+    border: 2px solid var(--Primary-700);
+  }
+  &:disabled {
+    background-color: var(--Primary-900);
+    color: var(--Light-900);
+  }
+}
 
-  &:focus-visible {
-    outline: 2px solid lightcoral;
-    outline-offset: 2px;
+.secondary {
+  background-color: var(--Dark-300);
+  &:active {
+    background-color: #212121;
+  }
+  &:hover {
+    background-color: var(--Dark-100);
+  }
+  &:focus {
+    background-color: var(--Dark-300);
+    border: 1px solid var(--Primary-300);
+  }
+  &:disabled {
+    background-color: var(--Dark-500);
+    color: var(--Light-900);
+  }
+}
+
+.outlined {
+  color: var(--Primary-500);
+  background-color: transparent;
+  border: 1px solid var(--Primary-500);
+  &:active {
+    color: var(--Primary-700);
+    border-color: var(--Primary-700);
+  }
+  &:hover {
+    color: var(--Primary-100);
+    border-color: var(--Primary-100);
+  }
+  &:focus {
+    color: var(--Primary-700);
+    border: 2px solid var(--Primary-700);
+  }
+  &:disabled {
+    color: var(--Primary-900);
+    border-color: var(--Primary-900);
+  }
+}
+
+.link {
+  color: var(--Primary-500);
+  background-color: transparent;
+  min-width: 100px;
+  &:active {
+    color: var(--Primary-700);
+  }
+  &:hover {
+    color: var(--Primary-100);
+  }
+  &:focus {
+    color: var(--Primary-500);
+    border: 2px solid var(--Primary-700);
+  }
+  &:disabled {
+    color: var(--Primary-900);
   }
 }
 
 .fullWidth {
   width: 100%;
-}
-
-.primary {
-  color: white;
-  background-color: blue;
-}
-
-.secondary {
-  color: black;
-  background-color: lightblue;
-}
-
-.tertiary {
-  color: blue;
-  border: 1px solid blue;
-}
-
-.link {
-  color: blue;
-  text-decoration: underline;
-}
-
-.icon {
-  width: 1.5rem;
-  height: 1.5rem;
 }
