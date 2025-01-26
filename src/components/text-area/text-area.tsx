@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import s from './text-area.module.scss'
 
 export type TextAreaProps = {
