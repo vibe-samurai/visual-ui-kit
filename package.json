@@ -9,7 +9,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "preview": "vite preview",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prepare": "husky install"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -32,10 +33,17 @@
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
     "eslint-plugin-storybook": "^0.11.2",
+    "husky": "^8.0.3",
     "sass": "^1.83.4",
     "storybook": "8.5.0",
     "stylelint": "^16.13.2",
     "typescript": "^5.7.3",
     "vite": "^6.0.11"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   }
 }
