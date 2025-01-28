@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef, ElementType } from 'react'
 
 import { clsx } from 'clsx'
 
-import s from './button.module.scss'
+import s from './Button.module.scss'
 
 export type ButtonVariant = 'link' | 'outlined' | 'primary' | 'secondary'
 
