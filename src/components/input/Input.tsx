@@ -13,6 +13,7 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   onChangeValue?: (value: string) => void
   onEnter?: (e: KeyboardEvent<HTMLInputElement>) => void
   type?: 'email' | 'password' | 'search' | 'text'
+  className?: string
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
