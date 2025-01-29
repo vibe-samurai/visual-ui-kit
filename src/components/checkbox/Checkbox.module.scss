@@ -1,0 +1,93 @@
+.container {
+  display: flex;
+  align-items: center;
+  background-color: var(--Dark-900);
+}
+
+.label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  &.disabled {
+    cursor: initial;
+    color: var(--Light-900);
+  }
+}
+
+.root {
+  cursor: pointer;
+
+  overflow: hidden; /* Решаем проблему с видимым фоном */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--Light-100);
+  border-radius: 2px;
+
+  background-color: var(--Light-100);
+
+  &:focus {
+    background-color: var(--Light-100);
+  }
+
+  &:disabled {
+    cursor: initial;
+    border-color: var(--Dark-100);
+    background-color: var(--Dark-900);
+  }
+
+  &[data-state='checked']:disabled {
+    background-color: var(--Dark-100);
+  }
+}
+
+.buttonWrapper {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+
+  /* Правильный порядок селекторов */
+  &:focus-within {
+    /* Переносим выше hover */
+    background-color: var(--Dark-500);
+  }
+
+  &:hover:not(.disabled),
+  &:hover .root:not([data-state='checked']) {
+    background-color: var(--Dark-300);
+  }
+
+  &:active:not(.disabled) {
+    background-color: var(--Dark-100);
+  }
+
+  &.disabled {
+    cursor: initial;
+  }
+
+  &.left {
+    margin-left: -9px;
+  }
+}
+
+.indicator {
+  width: 18px;
+  height: 18px;
+  border-radius: 2px; /* Добавляем скругление как у .root */
+  background-color: var(--Dark-900);
+
+  &:disabled {
+    border-color: var(--Light-700);
+    background-color: var(--Light-700);
+  }
+}
