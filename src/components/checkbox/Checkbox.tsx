@@ -1,50 +1,47 @@
-import { forwardRef, ForwardedRef } from 'react'
+import { ComponentPropsWithoutRef, forwardRef, useId } from 'react'
 
 import { CheckIcon } from '@/assets/icons'
 import { Typography } from '@/components'
-import * as RadixCheckbox from '@radix-ui/react-checkbox'
+import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import { clsx } from 'clsx'
 
 import s from './Checkbox.module.scss'
 
 export type CheckboxProps = {
-  checked: boolean
-  className?: string
-  disabled?: boolean
-  id?: string
-  label?: string
-  onCheckedChange?: (checked: boolean) => void
-}
+  label?: null | string
+  onChange?: (checked: CheckboxPrimitive.CheckedState) => void
+} & ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
 
 export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
-  (
-    { checked, className, disabled, id, label, onCheckedChange },
-    ref: ForwardedRef<HTMLButtonElement>
-  ) => {
-    const styles = {
-      label: clsx(s.label, disabled && s.disabled, className),
-      indicator: clsx(s.indicator, checked && disabled && s['check-disabled']),
-    }
+  ({ className, id, label, onChange, ...props }, ref) => {
+    const innerId = useId()
+    const finalId = id ?? innerId
 
     return (
-      <Typography as={'label'} className={styles.label} variant={'regular-text-14'}>
-        <RadixCheckbox.Root
-          checked={checked}
-          className={s.checkbox}
-          disabled={disabled}
-          id={id}
-          onCheckedChange={onCheckedChange}
-          ref={ref}
-        >
-          <div className={s.frame}></div>
-          {checked && (
-            <RadixCheckbox.Indicator className={styles.indicator} forceMount>
-              <CheckIcon />
-            </RadixCheckbox.Indicator>
-          )}
-        </RadixCheckbox.Root>
-        {label}
-      </Typography>
+      <div className={clsx(s.container, className)}>
+        <div className={clsx(s.wrapper, props.disabled ? s['is-disabled'] : '')}>
+          <CheckboxPrimitive.Root
+            className={s.root}
+            onCheckedChange={onChange}
+            ref={ref}
+            {...props}
+          >
+            <CheckboxPrimitive.Indicator asChild>
+              <CheckIcon className={clsx(s.check, props.disabled && s.disabled)} />
+            </CheckboxPrimitive.Indicator>
+          </CheckboxPrimitive.Root>
+        </div>
+        {label && (
+          <Typography
+            as={'label'}
+            variant={'medium-text-14'}
+            className={clsx(props.disabled ? s.disabledLabel : s.label)}
+            htmlFor={finalId}
+          >
+            {label}
+          </Typography>
+        )}
+      </div>
     )
   }
 )

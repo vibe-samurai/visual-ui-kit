@@ -1,71 +1,82 @@
-@use '@/styles/mixins' as *;
-
-.label {
-  cursor: pointer;
-
+.container {
   display: flex;
-  gap: 12px;
+  flex-direction: row;
+  gap: 4px;
   align-items: center;
-  justify-content: flex-start;
+}
 
-  padding: 9px 0;
+.wrapper {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
 
-  &.disabled {
-    cursor: initial;
-    color: var(--Light-900);
-  }
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
 
-  .checkbox {
-    @include common-animation-interactive($active-color: --Dark-100);
-    
-    cursor: pointer;
-    position: relative;
-    width: 18px;
-    height: 18px;
+  background-color: transparent;
 
-    .frame {
-      position: absolute;
-      z-index: 5;
-      inset: 0;
-
-      box-sizing: border-box;
-      border: 2px solid var(--Light-100);
-      border-radius: 2px;
+  &:not(.is-disabled) {
+    &:hover {
+      background-color: var(--Dark-300);
     }
 
-    .indicator {
-      position: absolute;
-      z-index: 10;
-      top: 0;
-      left: 0;
+    &:active {
+      background-color: var(--Dark-100);
     }
 
-    &:disabled {
-      cursor: auto;
-
-      &::before,
-      &::after {
-        @include common-animation-control(0);
-      }
-
-      svg {
-        fill: var(--Dark-100);
-      }
-
-      .frame {
-        border-color: var(--Dark-100);
-      }
-
-      .indicator {
-        fill: var(--Light-700);
-      }
+    &:focus-within {
+      background-color: var(--Dark-300);
     }
   }
 }
 
-.check-disabled {
-  width: 16px;
-  height: 16px;
-  border-radius: 4px;
-  background-color: var(--Light-700);
+.root {
+  cursor: pointer;
+
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--Light-100);
+  border-radius: 3px;
+
+  background-color: transparent;
+  outline: none;
+
+  &:disabled {
+    cursor: auto;
+    border-color: var(--Light-900);
+  }
+
+  &[data-state='checked'] {
+    color: var(--Light-100);
+    background-color: var(--Light-100);
+
+    &:disabled {
+      background-color: var(--Light-900);
+    }
+  }
+}
+
+.check {
+  width: 18px;
+  height: 18px;
+}
+
+.disabled {
+  filter: invert(92%) sepia(8%) saturate(157%) hue-rotate(173deg) brightness(97%) contrast(86%);
+}
+
+.label {
+  color: var(--Light-100);
+}
+
+.disabledLabel {
+  color: var(--Light-900);
 }
