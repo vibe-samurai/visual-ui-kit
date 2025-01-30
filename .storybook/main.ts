@@ -4,16 +4,17 @@ import { StorybookConfig } from '@storybook/react-vite'
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(ts|tsx)'],
   addons: [
+    getAbsolutePath('@storybook/addon-essentials'),
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-interactions'),
-    getAbsolutePath('@storybook/addon-essentials'),
   ],
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),
     options: {},
   },
   docs: {
-    autodocs: true,
+    //👇 See the table below for the list of supported options
+    defaultName: 'Documentation',
   },
   viteFinal: config => {
     config.build = config.build || {}
@@ -23,6 +24,6 @@ const config: StorybookConfig = {
 }
 export default config
 
-function getAbsolutePath(value: string): any {
+function getAbsolutePath(value: string): string {
   return dirname(require.resolve(join(value, 'package.json')))
 }

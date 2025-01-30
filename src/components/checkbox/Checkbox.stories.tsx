@@ -1,6 +1,6 @@
+import React from 'react'
 import { Meta, StoryObj } from '@storybook/react'
 import { Checkbox, CheckboxProps } from '@/components'
-import { useState } from 'react'
 
 const meta: Meta<typeof Checkbox> = {
   component: Checkbox,
@@ -12,7 +12,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 const CheckboxWithHooks = (args: CheckboxProps) => {
-  const [checked, setChecked] = useState(args.checked || false)
+  const [checked, setChecked] = React.useState(args.checked || false)
 
   const onCheckedChange = () => {
     setChecked(prev => !prev)
