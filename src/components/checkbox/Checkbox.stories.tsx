@@ -1,76 +1,60 @@
-import { useState } from 'react'
 import { Meta, StoryObj } from '@storybook/react'
-import { Checkbox } from '@/components'
+import { Checkbox, CheckboxProps } from '@/components'
+import { useState } from 'react'
 
-const meta = {
+const meta: Meta<typeof Checkbox> = {
   component: Checkbox,
-  tags: ['autodocs'],
   title: 'Components/Checkbox',
-} satisfies Meta<typeof Checkbox>
+}
 
 export default meta
 
 type Story = StoryObj<typeof meta>
 
-// Создаем отдельный компонент для контролируемой версии
-const ControlledCheckbox = (args: React.ComponentProps<typeof Checkbox>) => {
-  const [checked, setChecked] = useState(false)
+const CheckboxWithHooks = (args: CheckboxProps) => {
+  const [checked, setChecked] = useState(args.checked || false)
 
-  return (
-    <Checkbox
-      {...args}
-      checked={checked}
-      label={'Click here'}
-      onChange={() => setChecked(!checked)}
-    />
-  )
+  const onCheckedChange = () => {
+    setChecked(prev => !prev)
+    args.onCheckedChange?.(!checked)
+  }
+
+  return <Checkbox {...args} checked={checked} onCheckedChange={onCheckedChange} />
 }
 
-export const DefaultCheck: Story = {
+export const ControlledWithLabel: Story = {
   args: {
-    disabled: false,
-    checked: true,
-  },
-}
-export const DefaultUncheck: Story = {
-  args: {
-    disabled: false,
     checked: false,
-  },
-}
-export const LabelCheck: Story = {
-  args: {
     disabled: false,
-    checked: true,
-    label: 'Check-box',
+    label: 'You agree to our Terms of Service and Privacy Policy',
   },
+  render: (args: CheckboxProps) => <CheckboxWithHooks {...args} />,
 }
-export const LabelCheckUncheck: Story = {
+
+export const Default: Story = {
   args: {
-    disabled: false,
     checked: false,
-    label: 'Check-box',
+    disabled: false,
+    label: 'You agree to our Terms of Service and Privacy Policy',
   },
+  render: args => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '100%' }}>
+      <Checkbox {...args} />
+      <Checkbox {...{ ...args, checked: true }} />
+    </div>
+  ),
 }
+
 export const Disabled: Story = {
   args: {
+    checked: false,
     disabled: true,
+    label: 'You agree to our Terms of Service and Privacy Policy',
   },
-}
-export const DisabledCheck: Story = {
-  args: {
-    disabled: true,
-    checked: true,
-  },
-}
-export const DisabledLabel: Story = {
-  args: {
-    disabled: true,
-    checked: true,
-    label: 'Check-box',
-  },
-}
-
-export const Controlled: Story = {
-  render: args => <ControlledCheckbox {...args} />,
+  render: args => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '100%' }}>
+      <Checkbox {...args} />
+      <Checkbox {...{ ...args, checked: true }} />
+    </div>
+  ),
 }
