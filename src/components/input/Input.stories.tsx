@@ -39,7 +39,6 @@ export const SearchMode: Story = {
 
 export const Disabled: Story = {
   render: () => (
-    
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '100%' }}>
       <Input
         disabled
