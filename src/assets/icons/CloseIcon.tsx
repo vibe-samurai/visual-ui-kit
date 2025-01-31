@@ -1,4 +1,4 @@
-const Close = ({ size = 24, color = 'currentColor' }) => {
+const CloseIcon = ({ size = 24, color = 'currentColor' }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -17,4 +17,4 @@ const Close = ({ size = 24, color = 'currentColor' }) => {
   )
 }
 
-export default Close
+export default CloseIcon
