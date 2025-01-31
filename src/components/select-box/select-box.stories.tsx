@@ -2,8 +2,8 @@ import { Meta, StoryObj } from '@storybook/react'
 
 import { SelectBox } from './select-box'
 import { SelectItem } from './select-item/select-item'
-import { UKFlag } from '../../assets/icons/UKFlag'
-import { RussianFlag } from '../../assets/icons/RussianFlag'
+import { UKFlag } from '@assets/icons/UKFlag'
+import { RussianFlag } from '@assets/icons/RussianFlag'
 import s from './select-box.module.scss'
 
 const meta: Meta<typeof SelectBox> = {
