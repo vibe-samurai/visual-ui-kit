@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { TextArea } from './text-area'
+import { TextArea } from './Text-area'
 
 const meta: Meta<typeof TextArea> = {
   argTypes: {
