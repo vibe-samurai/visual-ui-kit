@@ -1,8 +1,9 @@
 import { dirname, join } from 'path'
+
 import { StorybookConfig } from '@storybook/react-vite'
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(ts|tsx)'],
+  stories: ['../src/**/*.stories.@(ts|tsx)'],
   addons: [
     getAbsolutePath('@storybook/addon-essentials'),
     getAbsolutePath('@storybook/addon-links'),
@@ -19,9 +20,11 @@ const config: StorybookConfig = {
   viteFinal: config => {
     config.build = config.build || {}
     config.build.sourcemap = false
+
     return config
   },
 }
+
 export default config
 
 function getAbsolutePath(value: string): string {
