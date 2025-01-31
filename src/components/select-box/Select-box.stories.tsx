@@ -1,10 +1,11 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import { SelectBox } from './Select-box'
-import { SelectItem } from './select-item/Select-item'
-import { UKFlagIcon } from '@assets/icons/UKFlagIcon'
 import { RussianFlagIcon } from '@assets/icons/RussianFlagIcon'
+import { UKFlagIcon } from '@assets/icons/UKFlagIcon'
+
+import { SelectBox } from './Select-box'
 import s from './Select-box.module.scss'
+import { SelectItem } from './select-item/Select-item'
 
 const meta: Meta<typeof SelectBox> = {
   argTypes: {
@@ -18,7 +19,7 @@ const meta: Meta<typeof SelectBox> = {
   },
   component: SelectBox,
   tags: ['autodocs'],
-  title: 'UI/SelectBox',
+  title: 'Components/SelectBox',
 }
 
 export default meta
@@ -58,13 +59,13 @@ export const WithFlags: Story = {
   args: {
     children: (
       <>
-        <SelectItem value="en">
+        <SelectItem value={'en'}>
           <div className={s.flagContainer}>
             <UKFlagIcon />
             English
           </div>
         </SelectItem>
-        <SelectItem value="ru">
+        <SelectItem value={'ru'}>
           <div className={s.flagContainer}>
             <RussianFlagIcon />
             Russian

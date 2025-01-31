@@ -41,21 +41,21 @@ export const Disabled: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '100%' }}>
       <Input
-        disabled
         id={'disabled-input'}
         label={'Email'}
         placeholder={'Epam@epam.com'}
         type={'text'}
+        disabled
       />
       <Input
-        disabled
         id={'disabled-password'}
         label={'Password'}
         placeholder={'Password'}
         type={'password'}
+        disabled
       />
       <div style={{ paddingTop: '20px' }}>
-        <Input disabled id={'disabled-search'} placeholder={'Input search'} type={'search'} />
+        <Input id={'disabled-search'} placeholder={'Input search'} type={'search'} disabled />
       </div>
     </div>
   ),

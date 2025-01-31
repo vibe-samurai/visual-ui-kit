@@ -1,6 +1,5 @@
-import { ComponentPropsWithoutRef, ElementType } from 'react'
-
 import { clsx } from 'clsx'
+import { ComponentPropsWithoutRef, ElementType } from 'react'
 
 import s from './Button.module.scss'
 

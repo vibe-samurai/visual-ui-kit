@@ -1,8 +1,7 @@
-import { FC } from 'react'
-
-import { Button } from '../button'
-import { Modal, ModalProps } from '../modal'
 import { clsx } from 'clsx'
+
+import { Button } from '@/components'
+import { Modal, ModalProps } from '@components/modal/Modal'
 
 import s from './dialog.module.scss'
 
@@ -20,7 +19,7 @@ export type DialogProps = {
   onConfirmButtonClick: () => void
 } & ModalProps
 
-export const Dialog: FC<DialogProps> = ({
+export const Dialog = ({
   cancelButtonText,
   children,
   confirmButtonText,
@@ -28,7 +27,7 @@ export const Dialog: FC<DialogProps> = ({
   onCancelButtonClick,
   onConfirmButtonClick,
   ...rest
-}) => {
+}: DialogProps) => {
   const { onClose } = rest
   const showCancelButton = !!cancelButtonText
 

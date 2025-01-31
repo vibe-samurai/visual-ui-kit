@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react'
+import { useState } from 'react'
 
 import { Modal, ModalProps } from './Modal'
 import { Button } from '../button'
-import { useState } from 'react'
 
 const meta = {
   component: Modal,
@@ -39,7 +39,7 @@ export const Default: Story = {
     return (
       <div>
         <Button onClick={handleModalOpened}>Open modal</Button>
-        <Modal {...args} open={open} onClose={handleModalClosed} />
+        <Modal {...args} onClose={handleModalClosed} open={open} />
       </div>
     )
   },

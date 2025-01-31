@@ -1,16 +1,18 @@
+import * as SelectRadix from '@radix-ui/react-select'
+import clsx from 'clsx'
 import {
   ComponentPropsWithoutRef,
   ForwardedRef,
-  ReactNode,
   forwardRef,
+  ReactNode,
   useId,
   useState,
 } from 'react'
-import * as SelectRadix from '@radix-ui/react-select'
-import clsx from 'clsx'
-import s from './Select-box.module.scss'
-import { Typography } from '../typography/Typography'
+
+import { Typography } from '@/components'
 import { ArrowDownIcon } from '@assets/icons/ArrowDownIcon'
+
+import s from './Select-box.module.scss'
 
 export type SelectProps = {
   id?: string
@@ -38,11 +40,11 @@ export const SelectBox = forwardRef<HTMLButtonElement, SelectProps>(
     return (
       <div className={s.wrapper}>
         {!!label && (
-          <Typography className={s.label} variant="regular-text-14">
+          <Typography className={s.label} variant={'regular-text-14'}>
             <label htmlFor={idToUse}>{label}</label>
           </Typography>
         )}
-        <SelectRadix.Root {...rest} value={value} onValueChange={handleValueChange}>
+        <SelectRadix.Root {...rest} onValueChange={handleValueChange} value={value}>
           <SelectRadix.Trigger className={clsx(s.trigger, small && s.small)} id={idToUse} ref={ref}>
             <div className={s.valueContainer}>
               {renderValue ? (
@@ -70,3 +72,5 @@ export const SelectBox = forwardRef<HTMLButtonElement, SelectProps>(
     )
   }
 )
+
+SelectBox.displayName = 'SelectBox'

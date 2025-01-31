@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react'
+import { useState } from 'react'
 
 import { Dialog, DialogProps } from './Dialog'
 import { Button } from '../button'
-import { useState } from 'react'
 
 const meta = {
   component: Dialog,
@@ -18,7 +18,7 @@ export const Default: Story = {
     open: true,
     confirmButtonText: 'fadsfa',
     onConfirmButtonClick: () => {
-      console.log('first')
+      alert('first')
     },
     title: 'Modal',
     children: <p>Lorem text</p>,
@@ -37,7 +37,7 @@ export const Default: Story = {
     return (
       <div>
         <Button onClick={handleModalOpened}>Open modal</Button>
-        <Dialog {...args} open={open} onClose={handleModalClosed} />
+        <Dialog {...args} onClose={handleModalClosed} open={open} />
       </div>
     )
   },
@@ -49,7 +49,7 @@ export const TwoButtons: Story = {
     confirmButtonText: 'Ok',
     cancelButtonText: 'Cancel',
     onConfirmButtonClick: () => {
-      console.log('first')
+      alert('first')
     },
     title: 'Modal',
     children: <p style={{ marginBottom: '18px' }}>Lorem text</p>,
@@ -71,10 +71,10 @@ export const TwoButtons: Story = {
         <Button onClick={handleModalOpened}>Open modal</Button>
         <Dialog
           {...args}
-          open={open}
-          onClose={handleModalClosed}
           onCancelButtonClick={handleModalClosed}
+          onClose={handleModalClosed}
           onConfirmButtonClick={handleModalClosed}
+          open={open}
         />
       </div>
     )

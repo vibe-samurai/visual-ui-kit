@@ -1,5 +1,3 @@
-import { ComponentProps } from 'react'
-
 import {
   Dialog,
   DialogClose,
@@ -9,9 +7,11 @@ import {
   DialogTitle,
 } from '@radix-ui/react-dialog'
 import { clsx } from 'clsx'
+import React from 'react'
+
+import CloseIcon from '@assets/icons/CloseIcon'
 
 import s from './modal.module.scss'
-import CloseIcon from '@assets/icons/CloseIcon'
 
 export type ModalSize = 'lg' | 'md' | 'sm'
 
@@ -27,7 +27,7 @@ export type ModalProps = {
    * For other values use className */
   size?: ModalSize
   title?: string
-} & ComponentProps<'div'>
+} & React.ComponentProps<'div'>
 
 export const Modal = ({
   children,
@@ -41,6 +41,7 @@ export const Modal = ({
   function handleModalClosed() {
     onClose?.()
   }
+
   const classNames = {
     closeButton: s.closeButton,
     content: getContentClassName(size, className),

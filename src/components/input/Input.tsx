@@ -1,8 +1,8 @@
-import React, { ChangeEvent, KeyboardEvent, useState } from 'react'
+import { clsx } from 'clsx'
+import React, { ChangeEvent, forwardRef, KeyboardEvent, useState } from 'react'
 
 import { HidePassIcon, SearchIcon, ShowPassIcon } from '@/assets/icons'
 import { Typography } from '@/components'
-import { clsx } from 'clsx'
 
 import s from './Input.module.scss'
 
@@ -16,7 +16,7 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   className?: string
 }
 
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       className,
@@ -81,8 +81,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               <SearchIcon
                 className={styles.searchIcon}
                 data-disabled={disabled}
-                data-value={value}
                 data-error={errorMessage}
+                data-value={value}
               />
             </span>
           )}
@@ -122,3 +122,5 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     )
   }
 )
+
+Input.displayName = 'Input'
