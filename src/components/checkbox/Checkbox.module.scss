@@ -1,0 +1,82 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+
+  background-color: transparent;
+
+  &:not(.is-disabled) {
+    &:hover {
+      background-color: var(--Dark-300);
+    }
+
+    &:active {
+      background-color: var(--Dark-100);
+    }
+
+    &:focus-within {
+      background-color: var(--Dark-300);
+    }
+  }
+}
+
+.root {
+  cursor: pointer;
+
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--Light-100);
+  border-radius: 3px;
+
+  background-color: transparent;
+  outline: none;
+
+  &:disabled {
+    cursor: auto;
+    border-color: var(--Light-900);
+  }
+
+  &[data-state='checked'] {
+    color: var(--Light-100);
+    background-color: var(--Light-100);
+
+    &:disabled {
+      background-color: var(--Light-900);
+    }
+  }
+}
+
+.check {
+  width: 18px;
+  height: 18px;
+}
+
+.disabled {
+  filter: invert(92%) sepia(8%) saturate(157%) hue-rotate(173deg) brightness(97%) contrast(86%);
+}
+
+.label {
+  color: var(--Light-100);
+}
+
+.disabledLabel {
+  color: var(--Light-900);
+}
