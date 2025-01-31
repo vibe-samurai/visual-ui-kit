@@ -1,4 +1,11 @@
-import { ComponentPropsWithoutRef, ForwardedRef, ReactNode, forwardRef, useId } from 'react'
+import {
+  ComponentPropsWithoutRef,
+  ForwardedRef,
+  ReactNode,
+  forwardRef,
+  useId,
+  useState,
+} from 'react'
 import * as SelectRadix from '@radix-ui/react-select'
 import clsx from 'clsx'
 import s from './select-box.module.scss'
@@ -10,12 +17,23 @@ export type SelectProps = {
   label?: string
   placeholder?: ReactNode
   small?: boolean
+  renderValue?: (value: string) => ReactNode
 } & ComponentPropsWithoutRef<typeof SelectRadix.Root>
 
 export const SelectBox = forwardRef<HTMLButtonElement, SelectProps>(
-  ({ children, id, label, placeholder, small, ...rest }, ref: ForwardedRef<HTMLButtonElement>) => {
+  (
+    { children, id, label, placeholder, small, renderValue, ...rest },
+    ref: ForwardedRef<HTMLButtonElement>
+  ) => {
     const generatedId = useId()
     const idToUse = id ?? generatedId
+    const [internalValue, setInternalValue] = useState(rest.defaultValue)
+    const value = rest.value !== undefined ? rest.value : internalValue
+
+    const handleValueChange = (value: string) => {
+      setInternalValue(value)
+      rest.onValueChange?.(value)
+    }
 
     return (
       <div className={s.wrapper}>
@@ -24,9 +42,18 @@ export const SelectBox = forwardRef<HTMLButtonElement, SelectProps>(
             <label htmlFor={idToUse}>{label}</label>
           </Typography>
         )}
-        <SelectRadix.Root {...rest}>
+        <SelectRadix.Root {...rest} value={value} onValueChange={handleValueChange}>
           <SelectRadix.Trigger className={clsx(s.trigger, small && s.small)} id={idToUse} ref={ref}>
-            <SelectRadix.Value placeholder={placeholder} />
+            <div className={s.valueContainer}>
+              {renderValue ? (
+                <SelectRadix.Value placeholder={placeholder} asChild>
+                  {renderValue(value as string)}
+                </SelectRadix.Value>
+              ) : (
+                <SelectRadix.Value placeholder={placeholder} />
+              )}
+            </div>
+
             <ArrowDown className={s.dropDownArrowIcon} height={24} width={24} />
           </SelectRadix.Trigger>
           <SelectRadix.Portal>

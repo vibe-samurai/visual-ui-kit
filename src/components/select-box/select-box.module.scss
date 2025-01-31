@@ -13,6 +13,7 @@
   all: unset;
 
   display: flex;
+  gap: 8px;
   align-items: center;
   justify-content: space-between;
 
@@ -20,11 +21,20 @@
   border: 1px solid var(--Dark-100);
   border-radius: 2px;
 
-  color: var(--Light-900);
+  color: var(--Light-100);
 
   background-color: transparent;
 
+  .valueContainer {
+    display: flex;
+    flex-grow: 1;
+    gap: 8px;
+    align-items: center;
+  }
+
   .dropDownArrowIcon {
+    flex-shrink: 0; 
+    margin-left: auto; 
     transition: 0.2s;
   }
 
@@ -78,4 +88,10 @@
 .viewport {
   display: flex;
   flex-direction: column;
+}
+
+.flagContainer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
