@@ -8,9 +8,9 @@ import {
 } from 'react'
 import * as SelectRadix from '@radix-ui/react-select'
 import clsx from 'clsx'
-import s from './select-box.module.scss'
+import s from './Select-box.module.scss'
 import { Typography } from '../typography/Typography'
-import { ArrowDown } from '../../assets/icons/ArrowDown'
+import { ArrowDownIcon } from '@assets/icons/ArrowDownIcon'
 
 export type SelectProps = {
   id?: string
@@ -54,7 +54,7 @@ export const SelectBox = forwardRef<HTMLButtonElement, SelectProps>(
               )}
             </div>
 
-            <ArrowDown className={s.dropDownArrowIcon} height={24} width={24} />
+            <ArrowDownIcon className={s.dropDownArrowIcon} height={24} width={24} />
           </SelectRadix.Trigger>
           <SelectRadix.Portal>
             <SelectRadix.Content

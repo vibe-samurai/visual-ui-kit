@@ -1,7 +1,7 @@
-import type { SVGProps } from 'react';
-import { forwardRef } from 'react';
+import type { SVGProps } from 'react'
+import { forwardRef } from 'react'
 
-export const RussianFlag = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>((props, ref) => (
+export const RussianFlagIcon = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>((props, ref) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -25,4 +25,4 @@ export const RussianFlag = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>((p
       />
     </defs>
   </svg>
-));
+))

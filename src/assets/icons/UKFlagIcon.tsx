@@ -1,7 +1,7 @@
 import type { SVGProps } from 'react'
 import { forwardRef } from 'react'
 
-export const UKFlag = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>((props, ref) => (
+export const UKFlagIcon = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>((props, ref) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"

@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef, forwardRef } from 'react'
 
 type Props = { className: string } & ComponentPropsWithoutRef<'svg'>
 
-export const ArrowDown = forwardRef<SVGSVGElement, Props>(
+export const ArrowDownIcon = forwardRef<SVGSVGElement, Props>(
   ({ className, height, width, ...props }: Props, ref) => {
     return (
       <svg

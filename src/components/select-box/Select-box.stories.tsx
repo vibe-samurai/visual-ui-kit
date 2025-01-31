@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import { SelectBox } from './select-box'
-import { SelectItem } from './select-item/select-item'
-import { UKFlag } from '@assets/icons/UKFlag'
-import { RussianFlag } from '@assets/icons/RussianFlag'
-import s from './select-box.module.scss'
+import { SelectBox } from './Select-box'
+import { SelectItem } from './select-item/Select-item'
+import { UKFlagIcon } from '@assets/icons/UKFlagIcon'
+import { RussianFlagIcon } from '@assets/icons/RussianFlagIcon'
+import s from './Select-box.module.scss'
 
 const meta: Meta<typeof SelectBox> = {
   argTypes: {
@@ -60,13 +60,13 @@ export const WithFlags: Story = {
       <>
         <SelectItem value="en">
           <div className={s.flagContainer}>
-            <UKFlag />
+            <UKFlagIcon />
             English
           </div>
         </SelectItem>
         <SelectItem value="ru">
           <div className={s.flagContainer}>
-            <RussianFlag />
+            <RussianFlagIcon />
             Russian
           </div>
         </SelectItem>
@@ -74,13 +74,13 @@ export const WithFlags: Story = {
     ),
     renderValue: value => (
       <div className={s.flagContainer}>
-        {value === 'en' ? <UKFlag /> : <RussianFlag />}
+        {value === 'en' ? <UKFlagIcon /> : <RussianFlagIcon />}
         {value === 'en' ? 'English' : 'Russian'}
       </div>
     ),
     placeholder: (
       <div className={s.flagContainer}>
-        <RussianFlag />
+        <RussianFlagIcon />
         Russian
       </div>
     ),

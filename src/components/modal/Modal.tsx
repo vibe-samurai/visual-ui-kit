@@ -11,7 +11,7 @@ import {
 import { clsx } from 'clsx'
 
 import s from './modal.module.scss'
-import Close from '@/assets/icons/Close'
+import CloseIcon from '@assets/icons/CloseIcon'
 
 export type ModalSize = 'lg' | 'md' | 'sm'
 
@@ -62,7 +62,7 @@ export const Modal = ({
               </DialogTitle>
               {showCloseButton && (
                 <DialogClose className={classNames.closeButton}>
-                  <Close />
+                  <CloseIcon />
                 </DialogClose>
               )}
             </header>
