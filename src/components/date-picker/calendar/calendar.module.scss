@@ -14,16 +14,18 @@
 .button_previous,
 .button_next {
   cursor: pointer;
+
   width: 36px;
   height: 36px;
   margin: 0;
   padding: 0;
+  border: none;
+  border-radius: 50%;
+
   background-color: var(--Dark-100);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 60%;
-  border: none;
-  border-radius: 50%;
 }
 
 .button_next {
@@ -37,11 +39,13 @@
 .caption_label {
   display: inline-flex;
   align-items: center;
-  white-space: nowrap;
+
   padding-left: 6px;
+
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-m);
   color: var(--Light-100);
+  white-space: nowrap;
 }
 
 .chevron {
@@ -50,13 +54,15 @@
 
 .day {
   position: relative;
+
   box-sizing: border-box;
-  text-align: center;
   width: 36px;
   height: 36px;
   padding: 0;
   border-radius: 50%;
+
   color: var(--Light-100);
+  text-align: center;
 
   &:hover {
     background-color: var(--Primary-900);
@@ -65,16 +71,20 @@
 
 .day_button {
   cursor: pointer;
+
   position: relative;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  background-color: transparent;
   border: none;
   border-radius: 50%;
+
+  background-color: transparent;
 
   &:focus-visible {
     outline: 2px solid var(--Primary-300);
@@ -85,8 +95,10 @@
   display: flex;
   align-content: center;
   align-items: center;
-  height: 2.75rem;
+
+  height: 44px;
   margin-bottom: 12px;
+
   font-size: var(--font-size-m);
   font-weight: var(--font-weight-bold);
 }
@@ -95,9 +107,11 @@
   position: absolute;
   inset-block-start: 0;
   inset-inline-end: 10px;
+
   display: flex;
   gap: 1px;
   align-items: center;
+
   height: 36px;
   margin-top: 4px;
 }
