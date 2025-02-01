@@ -6,7 +6,7 @@ export type CalendarProps = ComponentProps<typeof DayPicker>
 
 import 'react-day-picker/style.css'
 // eslint-disable-next-line import/order
-import s from './calendar.module.scss'
+import s from './Calendar.module.scss'
 
 export const Calendar = (props: CalendarProps) => {
   return (

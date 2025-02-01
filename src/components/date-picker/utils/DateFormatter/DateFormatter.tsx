@@ -1,7 +1,8 @@
 import { clsx } from 'clsx'
 
-import styles from './dateFormatter.module.scss'
-import { CalendarIcon } from '../../calendar/CalendarIcon'
+import { CalendarIcon } from '@assets/icons/CalendarIcon'
+
+import styles from './DateFormatter.module.scss'
 import { formatter } from '../validateDate'
 
 import type { ComponentPropsWithoutRef } from 'react'

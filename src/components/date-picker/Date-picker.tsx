@@ -2,10 +2,10 @@ import { clsx } from 'clsx'
 import { useState } from 'react'
 import { PropsRangeRequired, PropsSingleRequired } from 'react-day-picker'
 
-import { Calendar } from './calendar/calendar'
-import s from './date-picker.module.scss'
-import { DateFormatter } from './utils/DateFormatter/dateFormatter'
-import { Popover, PopoverContent, PopoverTrigger } from './utils/Popover/popover'
+import { Calendar } from './calendar/Calendar'
+import s from './Date-picker.module.scss'
+import { DateFormatter } from './utils/DateFormatter/DateFormatter'
+import { Popover, PopoverContent, PopoverTrigger } from './utils/Popover/Popover'
 import { validateDate } from './utils/validateDate'
 
 type SingleModeProps = Pick<PropsSingleRequired, 'mode' | 'onSelect' | 'selected'>

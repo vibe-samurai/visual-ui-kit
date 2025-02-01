@@ -1,7 +1,7 @@
 import * as PopoverPrimitive from '@radix-ui/react-popover'
 import { type ComponentPropsWithoutRef, forwardRef } from 'react'
 
-import styles from './popover.module.scss'
+import styles from './Popover.module.scss'
 
 const Popover = PopoverPrimitive.Root
 
