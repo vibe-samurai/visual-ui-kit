@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import { DateRange } from 'react-day-picker'
 import { Meta, StoryObj } from '@storybook/react'
 import { format } from 'date-fns'
+import { useState } from 'react'
+import { DateRange } from 'react-day-picker'
 
 import { Calendar } from './calendar'
 
@@ -24,6 +24,7 @@ export const Default: Story = {
 export const SingleCalendar: Story = {
   args: {},
   render: () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [date, setDate] = useState<Date>()
 
     return (
@@ -40,6 +41,7 @@ export const SingleCalendar: Story = {
 export const RangeCalendar: Story = {
   args: {},
   render: () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [date, setDate] = useState<DateRange>()
     const dateFormat = 'dd/MM/yyyy'
 

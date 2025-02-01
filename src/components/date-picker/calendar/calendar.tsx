@@ -1,10 +1,11 @@
 import { DayFlag, DayPicker } from 'react-day-picker'
+
 import type { ComponentProps } from 'react'
 
 export type CalendarProps = ComponentProps<typeof DayPicker>
 
 import 'react-day-picker/style.css'
-
+// eslint-disable-next-line import/order
 import s from './calendar.module.scss'
 
 export const Calendar = (props: CalendarProps) => {

@@ -1,11 +1,12 @@
-import { useState } from 'react'
 import { clsx } from 'clsx'
-import s from './date-picker.module.scss'
-import { Calendar } from './calendar/calendar'
+import { useState } from 'react'
 import { PropsRangeRequired, PropsSingleRequired } from 'react-day-picker'
-import { validateDate } from './utils/validateDate'
-import { Popover, PopoverContent, PopoverTrigger } from './utils/Popover/popover'
+
+import { Calendar } from './calendar/calendar'
+import s from './date-picker.module.scss'
 import { DateFormatter } from './utils/DateFormatter/dateFormatter'
+import { Popover, PopoverContent, PopoverTrigger } from './utils/Popover/popover'
+import { validateDate } from './utils/validateDate'
 
 type SingleModeProps = Pick<PropsSingleRequired, 'mode' | 'onSelect' | 'selected'>
 type RangeModeProps = Pick<PropsRangeRequired, 'mode' | 'onSelect' | 'selected'>

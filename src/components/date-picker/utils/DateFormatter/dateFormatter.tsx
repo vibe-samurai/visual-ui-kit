@@ -1,11 +1,11 @@
 import { clsx } from 'clsx'
 
 import styles from './dateFormatter.module.scss'
-
-import { formatter } from '../validateDate'
 import { CalendarIcon } from '../../calendar/CalendarIcon'
-import type { DateRange } from 'react-day-picker'
+import { formatter } from '../validateDate'
+
 import type { ComponentPropsWithoutRef } from 'react'
+import type { DateRange } from 'react-day-picker'
 
 type DateFormatterProps = {
   date: Date | DateRange | undefined
