@@ -1,9 +1,10 @@
 import * as path from 'path'
 import { resolve } from 'path'
-import dts from 'vite-plugin-dts'
+
 import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
 import copy from 'rollup-plugin-copy'
+import { defineConfig } from 'vite'
+import dts from 'vite-plugin-dts'
 
 import { dependencies, devDependencies } from './package.json'
 
@@ -29,10 +30,11 @@ export default defineConfig({
       },
     },
     target: 'esnext',
+    outDir: './dist',
   },
   plugins: [
     react(),
-    dts({ rollupTypes: true }), // Output .d.ts files
+    dts({ rollupTypes: true }),
     copy({
       targets: [{ src: 'src/assets/icons/*', dest: 'dist/icons' }],
       hook: 'writeBundle',
