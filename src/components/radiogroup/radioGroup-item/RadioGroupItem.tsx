@@ -13,9 +13,15 @@ export type Option = {
 
 export const RadioGroupItem = forwardRef<HTMLButtonElement, Option>(
   ({ label, value, ...props }, ref) => {
+    const styles = {
+      container: clsx(s.container, props.disabled ? s['is-disabled'] : ''),
+      wrapper: clsx(s.wrapper, props.disabled ? s['is-disabled'] : ''),
+      label: clsx(s.label, props.disabled && s.disabledLabel),
+    }
+
     return (
-      <div className={s.container}>
-        <div className={clsx(s.wrapper)}>
+      <div className={styles.container}>
+        <div className={styles.wrapper}>
           <RadioGroup.Item
             className={s.radio}
             disabled={props.disabled}
@@ -28,7 +34,7 @@ export const RadioGroupItem = forwardRef<HTMLButtonElement, Option>(
         </div>
         <Typography
           as={'label'}
-          className={clsx(s.label, props.disabled && s.disabledLabel)}
+          className={styles.label}
           htmlFor={value}
           variant={'regular-text-14'}
         >

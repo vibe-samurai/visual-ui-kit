@@ -3,6 +3,10 @@
   display: flex;
   gap: 4px;
   align-items: center;
+
+  &.is-disabled {
+    cursor: default;
+  }
 }
 
 .wrapper {
@@ -18,16 +22,13 @@
 
   transition: background-color 0.2s ease;
 
-  &:hover {
+  &:hover:not(.is-disabled),
+  &:focus-within:not(.is-disabled) {
     background-color: var(--Dark-300);
   }
 
-  &:active {
+  &:active:not(.is-disabled) {
     background-color: var(--Dark-100);
-  }
-
-  &:focus-within {
-    background-color: var(--Dark-500);
   }
 }
 
@@ -41,8 +42,8 @@
 
   background-color: transparent;
 
-  &[data-disabled] {
-    cursor: initial;
+  &:disabled {
+    cursor: default;
     border: 2px solid var(--Light-900);
     color: var(--Light-900);
   }
@@ -75,10 +76,8 @@
     transition: 100ms background-color;
   }
 
-  &[data-disabled] {
-    &::before {
-      background-color: var(--Light-900);
-    }
+  &[data-disabled]::before {
+    background-color: var(--Light-900);
   }
 }
 
@@ -88,6 +87,6 @@
 }
 
 .disabledLabel {
-  cursor: initial;
+  cursor: default;
   color: var(--Light-900);
 }
