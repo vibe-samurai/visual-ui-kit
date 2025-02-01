@@ -23,7 +23,7 @@
     },
     "allowSyntheticDefaultImports": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "vite.config.ts"],
+  "include": ["src"],
   "exclude": ["node_modules"],
   "references": [
     {
