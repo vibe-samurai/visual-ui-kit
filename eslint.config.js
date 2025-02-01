@@ -8,10 +8,8 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import globals from 'globals'
 
 export default [
-  // Базовая конфигурация ESLint
   js.configs.recommended,
 
-  // Глобальные переменные
   {
     languageOptions: {
       globals: {
@@ -21,7 +19,6 @@ export default [
     },
   },
 
-  // Конфигурация TypeScript
   {
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
@@ -40,13 +37,12 @@ export default [
     rules: {
       ...ts.configs.recommended.rules,
       '@typescript-eslint/no-unused-vars': 'warn',
-      'no-undef': 'off', // Отключаем no-undef для TypeScript
+      'no-undef': 'off',
     },
   },
 
-  // Конфигурация React
   {
-    files: ['**/*.ts', '**/*.tsx', '**/*.jsx'], // Добавлен шаблон для JSX
+    files: ['**/*.ts', '**/*.tsx'],
     plugins: {
       react: reactPlugin,
       'react-hooks': reactHooks,
@@ -76,7 +72,6 @@ export default [
     },
   },
 
-  // Конфигурация для импортов
   {
     plugins: {
       import: importPlugin,
@@ -121,7 +116,6 @@ export default [
     },
   },
 
-  // Кастомные правила
   {
     rules: {
       'arrow-parens': 'off',
@@ -155,6 +149,5 @@ export default [
     },
   },
 
-  // Интеграция с Prettier
   prettierConfig,
 ]
