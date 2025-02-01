@@ -13,34 +13,30 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
+const ModalWithState = (args: ModalProps) => {
+  const [open, setOpen] = useState(false)
+
+  function handleModalClosed() {
+    setOpen(false)
+  }
+  function handleModalOpened() {
+    setOpen(true)
+  }
+
+  return (
+    <div>
+      <Button onClick={handleModalOpened}>Open modal</Button>
+      <Modal {...args} onClose={handleModalClosed} open={open} />
+    </div>
+  )
+}
+
 export const Default: Story = {
   args: {
     open: true,
     title: 'Modal',
-    children: (
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. At voluptatum voluptas velit
-        perferendis quis odit vero obcaecati iste beatae quisquam quas, ullam numquam modi adipisci
-        ut magnam sit ea? Nostrum.
-      </p>
-    ),
+    children:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. At voluptatum voluptas velit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. At voluptatum voluptas velit',
   },
-  render: (args: ModalProps) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [open, setOpen] = useState(false)
-
-    function handleModalClosed() {
-      setOpen(false)
-    }
-    function handleModalOpened() {
-      setOpen(true)
-    }
-
-    return (
-      <div>
-        <Button onClick={handleModalOpened}>Open modal</Button>
-        <Modal {...args} onClose={handleModalClosed} open={open} />
-      </div>
-    )
-  },
+  render: args => <ModalWithState {...args} />,
 }

@@ -9,6 +9,7 @@ import {
 import { clsx } from 'clsx'
 import React from 'react'
 
+import { Typography } from '@/components'
 import CloseIcon from '@assets/icons/CloseIcon'
 
 import s from './modal.module.scss'
@@ -59,7 +60,9 @@ export const Modal = ({
           <DialogContent className={classNames.content} forceMount>
             <header className={classNames.header}>
               <DialogTitle asChild>
-                <h2 className={classNames.title}>{title}</h2>
+                <Typography as={'h2'} variant={'h2'}>
+                  {title}
+                </Typography>
               </DialogTitle>
               {showCloseButton && (
                 <DialogClose className={classNames.closeButton}>
@@ -67,7 +70,9 @@ export const Modal = ({
                 </DialogClose>
               )}
             </header>
-            <div className={classNames.contentBox}>{children}</div>
+            <div className={classNames.contentBox}>
+              <Typography>{children}</Typography>
+            </div>
           </DialogContent>
         </DialogPortal>
       )}
