@@ -1,5 +1,6 @@
+import { TextArea } from './Text-area'
+
 import type { Meta, StoryObj } from '@storybook/react'
-import { TextArea } from './text-area'
 
 const meta: Meta<typeof TextArea> = {
   argTypes: {
@@ -16,7 +17,7 @@ const meta: Meta<typeof TextArea> = {
   },
   component: TextArea,
   tags: ['autodocs'],
-  title: 'UI/TextArea',
+  title: 'Components/TextArea',
 }
 
 export default meta

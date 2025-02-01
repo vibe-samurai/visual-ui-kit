@@ -1,0 +1,97 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  & .label {
+    align-self: flex-start;
+    color: var(--Light-900);
+  }
+}
+
+.trigger {
+  all: unset;
+
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 6px 12px;
+  border: 1px solid var(--Dark-100);
+  border-radius: 2px;
+
+  color: var(--Light-100);
+
+  background-color: transparent;
+
+  .valueContainer {
+    display: flex;
+    flex-grow: 1;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .dropDownArrowIcon {
+    flex-shrink: 0;
+    margin-left: auto;
+    transition: 0.2s;
+  }
+
+  &.small {
+    padding: 0 2px 0 6px;
+    font-size: var(--font-size-s);
+  }
+
+  &[data-state='open'] {
+    border: 1px solid var(--Light-100);
+    color: var(--Light-100);
+    background-color: var(--Dark-500);
+
+    &.small {
+      border: 1px solid var(--Dark-100);
+    }
+
+    .dropDownArrowIcon {
+      rotate: 180deg;
+    }
+  }
+
+  &:disabled {
+    pointer-events: none;
+    color: var(--Dark-100);
+  }
+
+  &:enabled:focus-visible {
+    outline: 2px solid var(--Primary-500);
+  }
+
+  &:enabled:hover {
+    border-color: var(--Light-900);
+  }
+}
+
+.content {
+  z-index: 10;
+
+  width: var(--radix-select-trigger-width);
+  border: 1px solid var(--Light-100);
+  border-top: none;
+
+  background-color: var(--Dark-500);
+
+  &.small {
+    border: 1px solid var(--Dark-100);
+  }
+}
+
+.viewport {
+  display: flex;
+  flex-direction: column;
+}
+
+.flagContainer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}

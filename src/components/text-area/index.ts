@@ -1,1 +1,1 @@
-export * from './text-area'
+export * from './Text-area'
