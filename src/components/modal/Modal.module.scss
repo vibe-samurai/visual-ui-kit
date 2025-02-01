@@ -46,15 +46,7 @@
   justify-content: space-between;
 
   padding: 14px 24px;
-
   border-bottom: 1px solid gray;
-}
-
-.title {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 36px;
 }
 
 .contentBox {
@@ -77,10 +69,10 @@
   width: 36px;
   height: 36px;
   padding: 0;
-
-  background: transparent;
   border: none;
   border-radius: 50%;
+
+  background: transparent;
 
   transition: 0.1s background-color;
 
