@@ -34,6 +34,13 @@ export default defineConfig({
     minify: true,
   },
   plugins: [react(), dts({ rollupTypes: true })],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // Здесь можно указать дополнительные параметры, если нужно
+      },
+    },
+  },
   resolve: {
     alias: [
       { find: '@', replacement: path.resolve(__dirname, 'src') },
