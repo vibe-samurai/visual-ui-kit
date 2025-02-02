@@ -75,25 +75,20 @@
       "stylelint --fix"
     ]
   },
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      },
-      "require": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.cjs"
-      }
-    },
-    "./css": "./dist/index.cjs"
-  },
   "files": [
     "dist"
   ],
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.umd.js",
+      "styles": "./dist/index.css"
+    }
+  },
   "sideEffects": [
     "**/*.css"
   ],
