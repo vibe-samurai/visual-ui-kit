@@ -24,7 +24,7 @@
     "allowSyntheticDefaultImports": true
   },
   "include": ["src"],
-  "exclude": ["node_modules"],
+  "exclude": ["./src/**/*.stories.*", "node_modules"],
   "references": [
     {
       "path": "./tsconfig.node.json"
