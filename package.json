@@ -75,23 +75,26 @@
       "stylelint --fix"
     ]
   },
-  "files": [
-    "dist"
-  ],
-  "main": "./dist/index.umd.cjs",
+  "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "dist/style.css"
+  ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.umd.js",
-      "styles": "./dist/index.css"
-    }
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.cjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./style.css": "./dist/style.css"
   },
-  "sideEffects": [
-    "**/*.css"
-  ],
   "eslintConfig": {
     "extends": [
       "plugin:storybook/recommended"

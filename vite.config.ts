@@ -1,8 +1,7 @@
 import * as path from 'path'
-import { resolve } from 'path'
+import { join, resolve } from 'path'
 
 import react from '@vitejs/plugin-react'
-import copy from 'rollup-plugin-copy'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 
@@ -12,33 +11,29 @@ import { dependencies, devDependencies } from './package.json'
 export default defineConfig({
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
+      entry: resolve(__dirname, join('src', 'index.ts')),
       fileName: 'index',
       formats: ['es', 'cjs'],
       name: 'visual-ui-kit',
     },
     rollupOptions: {
       external: [
-        'react/jsx-runtime',
         ...Object.keys(dependencies),
         ...Object.keys(devDependencies),
+        'react/jsx-runtime',
       ],
       output: {
         dir: 'dist',
-        entryFileNames: '[name].js',
-        format: 'es',
+        entryFileNames: '[name].cjs',
+        format: 'cjs',
       },
     },
     target: 'esnext',
+    outDir: './dist',
+    emptyOutDir: true,
+    minify: true,
   },
-  plugins: [
-    react(),
-    dts({ rollupTypes: true }),
-    copy({
-      targets: [{ src: 'src/assets/icons/*', dest: 'dist/icons' }],
-      hook: 'writeBundle',
-    }),
-  ],
+  plugins: [react(), dts({ rollupTypes: true })],
   resolve: {
     alias: [
       { find: '@', replacement: path.resolve(__dirname, 'src') },
