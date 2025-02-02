@@ -3,11 +3,11 @@ import { join, resolve } from 'path'
 
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 import dts from 'vite-plugin-dts'
 
 import { dependencies, devDependencies } from './package.json'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   build: {
     lib: {
@@ -33,7 +33,11 @@ export default defineConfig({
     emptyOutDir: true,
     minify: true,
   },
-  plugins: [react(), dts({ rollupTypes: true })],
+  plugins: [
+    react(),
+    dts({ rollupTypes: true }),
+    cssInjectedByJsPlugin(), // Добавляем плагин для встраивания стилей в JS
+  ],
   css: {
     preprocessorOptions: {
       scss: {
