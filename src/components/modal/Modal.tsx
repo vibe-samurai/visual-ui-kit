@@ -71,7 +71,7 @@ export const Modal = ({
               )}
             </header>
             <div className={classNames.contentBox}>
-              <Typography>{children}</Typography>
+              {children}
             </div>
           </DialogContent>
         </DialogPortal>
