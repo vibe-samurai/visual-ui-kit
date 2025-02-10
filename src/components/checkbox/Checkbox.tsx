@@ -1,6 +1,6 @@
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import { clsx } from 'clsx'
-import { ComponentPropsWithoutRef, forwardRef, useId } from 'react'
+import { ComponentPropsWithoutRef, forwardRef, ReactNode, useId } from 'react'
 
 import { CheckIcon } from '@/assets/icons'
 import { Typography } from '@/components'
@@ -8,7 +8,7 @@ import { Typography } from '@/components'
 import s from './Checkbox.module.scss'
 
 export type CheckboxProps = {
-  label?: null | string
+  label?: null | string | ReactNode
   onChange?: (checked: CheckboxPrimitive.CheckedState) => void
 } & ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
 
