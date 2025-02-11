@@ -35,11 +35,11 @@ const Header = () => {
             </SelectItem>
           </SelectBox>
         </div>
-        <Button as={'a'} variant={'link'}>
-          <a href={'/auth/login'}>Log in</a>
+        <Button as={'a'} variant={'link'} href={'/auth/login'}>
+          Log in
         </Button>
-        <Button as={'a'} variant={'primary'}>
-          <a href={'/auth/signup'}>Sign up</a>
+        <Button as={'a'} variant={'primary'} href={'/auth/signup'}>
+          Sign up
         </Button>
       </div>
     </header>
