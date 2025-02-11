@@ -1,7 +1,7 @@
 import * as SelectRadix from '@radix-ui/react-select'
 import { ComponentPropsWithoutRef, ForwardedRef, forwardRef } from 'react'
 
-import s from './Select-item.module.scss'
+import s from './SelectItem.module.scss'
 
 type SelectItemProps = {} & ComponentPropsWithoutRef<typeof SelectRadix.Item>
 

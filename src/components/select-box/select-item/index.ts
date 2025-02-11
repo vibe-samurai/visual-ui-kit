@@ -1,1 +1,1 @@
-export * from './Select-item'
+export * from './SelectItem'

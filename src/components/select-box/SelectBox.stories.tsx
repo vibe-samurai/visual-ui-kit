@@ -3,9 +3,8 @@ import { Meta, StoryObj } from '@storybook/react'
 import { RussianFlagIcon } from '@assets/icons/RussianFlagIcon'
 import { UKFlagIcon } from '@assets/icons/UKFlagIcon'
 
-import { SelectBox } from './Select-box'
-import s from './Select-box.module.scss'
-import { SelectItem } from './select-item/Select-item'
+import { SelectItem } from './select-item'
+import { SelectBox } from './SelectBox'
 
 const meta: Meta<typeof SelectBox> = {
   argTypes: {
@@ -60,13 +59,13 @@ export const WithFlags: Story = {
     children: (
       <>
         <SelectItem value={'en'}>
-          <div className={s.flagContainer}>
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
             <UKFlagIcon />
             English
           </div>
         </SelectItem>
         <SelectItem value={'ru'}>
-          <div className={s.flagContainer}>
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
             <RussianFlagIcon />
             Russian
           </div>
@@ -74,13 +73,13 @@ export const WithFlags: Story = {
       </>
     ),
     renderValue: value => (
-      <div className={s.flagContainer}>
+      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
         {value === 'en' ? <UKFlagIcon /> : <RussianFlagIcon />}
         {value === 'en' ? 'English' : 'Russian'}
       </div>
     ),
     placeholder: (
-      <div className={s.flagContainer}>
+      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
         <RussianFlagIcon />
         Russian
       </div>

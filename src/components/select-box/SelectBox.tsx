@@ -12,7 +12,7 @@ import {
 import { Typography } from '@/components'
 import { ArrowDownIcon } from '@assets/icons/ArrowDownIcon'
 
-import s from './Select-box.module.scss'
+import s from './SelectBox.module.scss'
 
 export type SelectProps = {
   id?: string
