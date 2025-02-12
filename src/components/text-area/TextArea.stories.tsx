@@ -1,4 +1,4 @@
-import { TextArea } from './Text-area'
+import { TextArea } from './TextArea'
 
 import type { Meta, StoryObj } from '@storybook/react'
 

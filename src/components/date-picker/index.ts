@@ -1,1 +1,1 @@
-export * from './Date-picker'
+export * from './DatePicker'

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { PropsRangeRequired, PropsSingleRequired } from 'react-day-picker'
 
 import { Calendar } from './calendar/Calendar'
-import s from './Date-picker.module.scss'
+import s from './DatePicker.module.scss'
 import { DateFormatter } from './utils/DateFormatter/DateFormatter'
 import { Popover, PopoverContent, PopoverTrigger } from './utils/Popover/Popover'
 import { validateDate } from './utils/validateDate'
