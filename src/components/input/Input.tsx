@@ -92,6 +92,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             className={styles.input}
             data-error={errorMessage}
             disabled={disabled}
+            value={value}
             onBlur={() => setIsFocused(false)}
             onChange={handleChange}
             onFocus={() => setIsFocused(true)}
