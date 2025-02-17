@@ -5,7 +5,10 @@ import { SelectItem } from '@components/select-box/select-item'
 
 import s from './Header.module.scss'
 
-const Header = () => {
+type Props = {
+  isAuth?: boolean
+}
+const Header = ({ isAuth }: Props) => {
   const placeholder = (
     <div className={s['select-value']}>
       <RussianFlagIcon />
@@ -35,12 +38,16 @@ const Header = () => {
             </SelectItem>
           </SelectBox>
         </div>
-        <Button as={'a'} variant={'link'} href={'/auth/login'}>
-          Log in
-        </Button>
-        <Button as={'a'} variant={'primary'} href={'/auth/signup'}>
-          Sign up
-        </Button>
+        {!isAuth && (
+          <>
+            <Button as={'a'} variant={'link'} href={'/auth/login'}>
+              Log in
+            </Button>
+            <Button as={'a'} variant={'primary'} href={'/auth/signup'}>
+              Sign up
+            </Button>
+          </>
+        )}
       </div>
     </header>
   )
