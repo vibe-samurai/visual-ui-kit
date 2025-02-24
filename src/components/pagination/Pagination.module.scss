@@ -1,0 +1,65 @@
+.pagination {
+  display: flex;
+  column-gap: 12px;
+  align-items: baseline;
+  justify-content: center;
+  font-size: var(--font-size-s);
+
+  .rowsPerPage {
+    .select {
+      margin-left: 4px;
+      margin-right: 8px;
+      border-radius: 2px;
+      border-color: var(--Dark-300);
+      background-color: var(--Dark-500);
+      color: var(--Light-100);
+
+      .option {
+        border: none;
+        background-color: var(--Dark-500);
+        color: var(--Light-100);
+        border-radius: 1px;
+
+        &:hover {
+          background-color: var(--Dark-100);
+        }
+      }
+    }
+  }
+
+  .button {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: var(--font-size-s);
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .pageButton {
+    border: none;
+    background: transparent;
+    padding: 0px 2px;
+    cursor: pointer;
+    border-radius: 2px;
+    font-size: var(--font-size-s);
+    color: var(--Light-100);
+
+    &.active {
+      background: var(--Light-100);
+      color: var(--Dark-900);
+    }
+
+   
+  }
+
+  .ellipsis {
+    color: var(--Light-100);
+    user-select: none;
+  }
+}
