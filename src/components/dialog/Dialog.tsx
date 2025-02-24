@@ -1,19 +1,9 @@
-<<<<<<< HEAD
-import { FC } from 'react'
-
-import { Button } from '../button'
-import { Modal, ModalProps } from '../modal'
-import { clsx } from 'clsx'
-
-import s from './Dialog.module.scss'
-=======
 import { clsx } from 'clsx'
 
 import { Button } from '@/components'
 import { Modal, ModalProps } from '@components/modal/Modal'
 
 import s from './dialog.module.scss'
->>>>>>> e3289ef77e6b61ade85137513c98f6019775fda1
 
 export type DialogProps = {
   cancelButtonText?: string
@@ -29,11 +19,7 @@ export type DialogProps = {
   onConfirmButtonClick: () => void
 } & ModalProps
 
-<<<<<<< HEAD
-export const Dialog: FC<DialogProps> = ({
-=======
 export const Dialog = ({
->>>>>>> e3289ef77e6b61ade85137513c98f6019775fda1
   cancelButtonText,
   children,
   confirmButtonText,
@@ -41,11 +27,7 @@ export const Dialog = ({
   onCancelButtonClick,
   onConfirmButtonClick,
   ...rest
-<<<<<<< HEAD
-}) => {
-=======
 }: DialogProps) => {
->>>>>>> e3289ef77e6b61ade85137513c98f6019775fda1
   const { onClose } = rest
   const showCancelButton = !!cancelButtonText
 
