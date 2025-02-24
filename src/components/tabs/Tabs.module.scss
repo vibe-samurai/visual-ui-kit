@@ -1,0 +1,118 @@
+.root {
+  width: 100%;
+
+  .list {
+    display: flex;
+    width: 100%;
+
+    .trigger {
+      all: unset;
+
+      cursor: pointer;
+
+      position: relative;
+
+      flex: 1;
+
+      padding: 8px 24px;
+
+      font-size: var(--font-size-m);
+      font-weight: var(--font-weight-semi-bold);
+      line-height: var(--line-height-m);
+      color: var(--Dark-100);
+      text-align: center;
+
+      background-color: transparent;
+
+      transition: all 0.3s;
+
+      &::before {
+        content: '';
+
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        width: 100%;
+        height: 2px;
+
+        background-color: var(--Dark-100);
+      }
+
+      &::after {
+        content: '';
+
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        background-color: transparent;
+      }
+
+      // Состояние :focus-visible
+      &:focus-visible {
+        border-radius: 2px;
+        outline: 2px solid var(--Primary-700);
+        transition: none;
+      }
+
+      // Состояние :hover (только для не disabled)
+      &:hover:not([data-disabled]) {
+        color: var(--Primary-500);
+
+        &::before {
+          background-color: var(--Primary-500);
+        }
+
+        &::after {
+          opacity: 0.15;
+          background-color: var(--Primary-900);
+        }
+      }
+
+      // Состояние active
+      &[data-state='active'] {
+        color: var(--Primary-500);
+        opacity: 1;
+
+        &::before {
+          background-color: var(--Primary-500);
+        }
+
+        &::after {
+          opacity: 0.15;
+          background-color: var(--Primary-100);
+        }
+
+        // Состояние active + disabled
+        &[data-disabled] {
+          cursor: not-allowed;
+          color: var(--Primary-900);
+
+          &::before {
+            background-color: var(--Primary-900);
+          }
+
+          &::after {
+            background-color: transparent;
+          }
+        }
+      }
+
+      // Состояние disabled
+      &[data-disabled] {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  // Стили для content
+  .content {
+    &:focus-visible {
+      outline: none;
+    }
+  }
+}
