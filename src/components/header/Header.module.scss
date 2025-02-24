@@ -1,0 +1,27 @@
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 12px 60px;
+  border-bottom: 1px solid var(--Dark-300);
+
+  .functional-container {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: space-between;
+
+    .select {
+      width: 160px;
+      margin-right: 12px;
+
+      .select-value {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+    }
+  }
+}

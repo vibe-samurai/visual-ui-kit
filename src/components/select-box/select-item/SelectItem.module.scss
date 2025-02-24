@@ -1,0 +1,14 @@
+.item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 6px 12px;
+
+  &:hover,
+  &[data-highlighted] {
+    color: var(--Primary-500);
+    background-color: var(--Dark-300);
+    outline: none;
+    transition: 0.2s;
+  }
+}
