@@ -1,26 +1,24 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import { Header } from '@/components/header/Header'
+import { Header } from './Header'
 
-const meta = {
-  component: Header,
+const meta: Meta<typeof Header> = {
   title: 'Components/Header',
-} satisfies Meta<typeof Header>
+  component: Header,
+}
 
 export default meta
 
-type Story = StoryObj<typeof meta>
-
-export const Default: Story = {
+export const Default: StoryObj<typeof Header> = {
   args: {
     isAuth: false,
+    loginLink: 'auth/login',
+    signupLink: 'auth/signup',
   },
 }
 
-export const IsAuth: Story = {
+export const Auth: StoryObj<typeof Header> = {
   args: {
     isAuth: true,
-    loginLink: '/auth/login',
-    signupLink: '/auth/signup',
   },
 }

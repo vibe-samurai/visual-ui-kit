@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { Button, SelectBox, Typography } from '@/components'
 import { RussianFlagIcon } from '@assets/icons/RussianFlagIcon'
 import { UKFlagIcon } from '@assets/icons/UKFlagIcon'
@@ -5,12 +7,19 @@ import { SelectItem } from '@components/select-box/select-item'
 
 import s from './Header.module.scss'
 
+type LinkProps = {
+  href: string
+  children: React.ReactNode
+}
+
 type Props = {
   isAuth: boolean
   loginLink?: string
   signupLink?: string
+  LinkComponent?: React.ComponentType<LinkProps>
 }
-const Header = ({ isAuth, loginLink, signupLink }: Props) => {
+
+const Header = ({ isAuth, loginLink, signupLink, LinkComponent }: Props) => {
   const placeholder = (
     <div className={s['select-value']}>
       <RussianFlagIcon />
@@ -43,10 +52,18 @@ const Header = ({ isAuth, loginLink, signupLink }: Props) => {
         {!isAuth && (
           <>
             <Button asChild variant={'link'}>
-              <a href={loginLink}>Login</a>
+              {LinkComponent ? (
+                <LinkComponent href={loginLink || '#'}>Login</LinkComponent>
+              ) : (
+                <a href={loginLink || '#'}>Login</a>
+              )}
             </Button>
             <Button asChild variant={'primary'}>
-              <a href={signupLink}>Sign Up</a>
+              {LinkComponent ? (
+                <LinkComponent href={signupLink || '#'}>Sign Up</LinkComponent>
+              ) : (
+                <a href={signupLink || '#'}>Sign Up</a>
+              )}
             </Button>
           </>
         )}
