@@ -11,10 +11,16 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: {
+    isAuth: false,
+  },
+}
 
-export const Auth: Story = {
+export const IsAuth: Story = {
   args: {
     isAuth: true,
+    loginLink: '/auth/login',
+    signupLink: '/auth/signup',
   },
 }
