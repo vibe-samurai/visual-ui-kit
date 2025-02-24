@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-import { ComponentProps } from 'react'
-
-=======
->>>>>>> e3289ef77e6b61ade85137513c98f6019775fda1
 import {
   Dialog,
   DialogClose,
@@ -12,12 +7,6 @@ import {
   DialogTitle,
 } from '@radix-ui/react-dialog'
 import { clsx } from 'clsx'
-<<<<<<< HEAD
-
-import s from './Modal.module.scss'
-import CloseIcon from '@assets/icons/CloseIcon'
-
-=======
 import React from 'react'
 
 import { Typography } from '@/components'
@@ -25,7 +14,6 @@ import CloseIcon from '@assets/icons/CloseIcon'
 
 import s from './modal.module.scss'
 
->>>>>>> e3289ef77e6b61ade85137513c98f6019775fda1
 export type ModalSize = 'lg' | 'md' | 'sm'
 
 export type ModalProps = {
@@ -40,11 +28,7 @@ export type ModalProps = {
    * For other values use className */
   size?: ModalSize
   title?: string
-<<<<<<< HEAD
-} & ComponentProps<'div'>
-=======
 } & React.ComponentProps<'div'>
->>>>>>> e3289ef77e6b61ade85137513c98f6019775fda1
 
 export const Modal = ({
   children,
@@ -58,10 +42,7 @@ export const Modal = ({
   function handleModalClosed() {
     onClose?.()
   }
-<<<<<<< HEAD
-=======
 
->>>>>>> e3289ef77e6b61ade85137513c98f6019775fda1
   const classNames = {
     closeButton: s.closeButton,
     content: getContentClassName(size, className),
@@ -79,13 +60,9 @@ export const Modal = ({
           <DialogContent className={classNames.content} forceMount>
             <header className={classNames.header}>
               <DialogTitle asChild>
-<<<<<<< HEAD
-                <h2 className={classNames.title}>{title}</h2>
-=======
                 <Typography as={'h2'} variant={'h2'}>
                   {title}
                 </Typography>
->>>>>>> e3289ef77e6b61ade85137513c98f6019775fda1
               </DialogTitle>
               {showCloseButton && (
                 <DialogClose className={classNames.closeButton}>
@@ -93,13 +70,7 @@ export const Modal = ({
                 </DialogClose>
               )}
             </header>
-<<<<<<< HEAD
             <div className={classNames.contentBox}>{children}</div>
-=======
-            <div className={classNames.contentBox}>
-              {children}
-            </div>
->>>>>>> e3289ef77e6b61ade85137513c98f6019775fda1
           </DialogContent>
         </DialogPortal>
       )}
