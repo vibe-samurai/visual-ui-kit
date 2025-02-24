@@ -1,6 +1,6 @@
-import { Button } from '@/components'
-
 import type { Meta, StoryObj } from '@storybook/react'
+
+import { Button } from '@/components'
 
 const meta = {
   argTypes: {
@@ -59,12 +59,14 @@ export const FullWidth: Story = {
 
 export const AsLink: Story = {
   args: {
-    as: 'a',
-    children: 'Link that looks like a button',
-    fullWidth: false,
-    href: 'https://google.com',
-    rel: 'noopener noreferrer',
-    target: '_blank',
-    variant: 'primary',
+    ...Primary.args,
+    children: 'Link',
+  },
+  render: args => {
+    return (
+      <Button {...args} asChild>
+        <a>Go to google</a>
+      </Button>
+    )
   },
 }
