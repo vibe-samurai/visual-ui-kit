@@ -70,9 +70,7 @@ export const Modal = ({
                 </DialogClose>
               )}
             </header>
-            <div className={classNames.contentBox}>
-              {children}
-            </div>
+            <div className={classNames.contentBox}>{children}</div>
           </DialogContent>
         </DialogPortal>
       )}

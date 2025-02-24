@@ -1,7 +1,6 @@
-import { Meta, StoryObj } from '@storybook/react'
-
 import { RussianFlagIcon } from '@assets/icons/RussianFlagIcon'
 import { UKFlagIcon } from '@assets/icons/UKFlagIcon'
+import { Meta, StoryObj } from '@storybook/react'
 
 import { SelectItem } from './select-item'
 import { SelectBox } from './SelectBox'

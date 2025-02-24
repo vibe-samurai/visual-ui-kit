@@ -1,7 +1,3 @@
-import { Meta, StoryObj } from '@storybook/react'
-import { useState } from 'react'
-
-import { Sidebar, SidebarItem, SideBarItemProps } from '@/components'
 import {
   CreateActiveIcon,
   CreateIcon,
@@ -20,6 +16,10 @@ import {
   StatisticsActiveIcon,
   StatisticsIcon,
 } from '@assets/icons'
+import { Meta, StoryObj } from '@storybook/react'
+import { useState } from 'react'
+
+import { Sidebar, SidebarItem, SideBarItemProps } from '@/components'
 
 const meta = {
   component: Sidebar,
