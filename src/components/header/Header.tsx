@@ -29,44 +29,46 @@ const Header = ({ isAuth, loginLink, signupLink, LinkComponent }: Props) => {
 
   return (
     <header className={s['header-container']}>
-      <Typography as={'a'} variant={'large'} href={'/'}>
-        Visual-Vibe
-      </Typography>
-      <div className={s['functional-container']}>
-        <div className={s['select']}>
-          <SelectBox placeholder={placeholder}>
-            <SelectItem value={'en'}>
-              <div className={s['select-value']}>
-                <UKFlagIcon />
-                <span>English</span>
-              </div>
-            </SelectItem>
-            <SelectItem value={'ru'}>
-              <div className={s['select-value']}>
-                <RussianFlagIcon />
-                <span>Russian</span>
-              </div>
-            </SelectItem>
-          </SelectBox>
+      <div className={s.headerWrapper}>
+        <Typography as={'a'} variant={'large'} href={'/'}>
+          Visual-Vibe
+        </Typography>
+        <div className={s['functional-container']}>
+          <div className={s['select']}>
+            <SelectBox placeholder={placeholder}>
+              <SelectItem value={'en'}>
+                <div className={s['select-value']}>
+                  <UKFlagIcon />
+                  <span>English</span>
+                </div>
+              </SelectItem>
+              <SelectItem value={'ru'}>
+                <div className={s['select-value']}>
+                  <RussianFlagIcon />
+                  <span>Russian</span>
+                </div>
+              </SelectItem>
+            </SelectBox>
+          </div>
+          {!isAuth && (
+            <>
+              <Button asChild variant={'link'}>
+                {LinkComponent ? (
+                  <LinkComponent href={loginLink || '#'}>Login</LinkComponent>
+                ) : (
+                  <a href={loginLink || '#'}>Login</a>
+                )}
+              </Button>
+              <Button asChild variant={'primary'}>
+                {LinkComponent ? (
+                  <LinkComponent href={signupLink || '#'}>Sign Up</LinkComponent>
+                ) : (
+                  <a href={signupLink || '#'}>Sign Up</a>
+                )}
+              </Button>
+            </>
+          )}
         </div>
-        {!isAuth && (
-          <>
-            <Button asChild variant={'link'}>
-              {LinkComponent ? (
-                <LinkComponent href={loginLink || '#'}>Login</LinkComponent>
-              ) : (
-                <a href={loginLink || '#'}>Login</a>
-              )}
-            </Button>
-            <Button asChild variant={'primary'}>
-              {LinkComponent ? (
-                <LinkComponent href={signupLink || '#'}>Sign Up</LinkComponent>
-              ) : (
-                <a href={signupLink || '#'}>Sign Up</a>
-              )}
-            </Button>
-          </>
-        )}
       </div>
     </header>
   )
