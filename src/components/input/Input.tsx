@@ -57,9 +57,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     const renderPasswordToggleIcon = () =>
       showPassword ? (
-        <HidePassIcon />
-      ) : (
         <ShowPassIcon className={s['password-toggle-icon']} data-disabled={disabled} />
+      ) : (
+        <HidePassIcon />
       )
 
     const styles = {
