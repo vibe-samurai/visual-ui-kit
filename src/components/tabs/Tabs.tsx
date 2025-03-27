@@ -1,12 +1,20 @@
 import * as TabsRadix from '@radix-ui/react-tabs'
 import clsx from 'clsx'
-import { ComponentPropsWithoutRef, forwardRef } from 'react'
+import { ComponentPropsWithoutRef, forwardRef, ReactNode } from 'react'
 
 import s from './Tabs.module.scss'
 
-type TabsProps = ComponentPropsWithoutRef<typeof TabsRadix.Root> & {
-  defaultValue?: string
+export type TabType = {
+  disabled?: boolean
+  title: string
+  value: string
 }
+
+type TabsProps = {
+  children?: ReactNode
+  fullWidth?: boolean
+  tabs: TabType[]
+} & ComponentPropsWithoutRef<typeof TabsRadix.Root>
 
 export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
   ({ onValueChange, children, className, defaultValue, ...rest }, ref) => {
