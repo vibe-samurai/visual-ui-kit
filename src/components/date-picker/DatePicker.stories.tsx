@@ -1,43 +1,61 @@
+import { action } from '@storybook/addon-actions'
 import { Meta, StoryObj } from '@storybook/react'
-import { useState } from 'react'
-import { DateRange } from 'react-day-picker'
+import { addDays } from 'date-fns'
 
-import { DatePicker } from './DatePicker'
+import { DatePicker } from './datePicker'
 
 const meta = {
   component: DatePicker,
-  tags: ['autodocs'],
+  title: 'Components/Date Picker',
 } satisfies Meta<typeof DatePicker>
 
 export default meta
+
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: { mode: 'single', selected: undefined },
-  render: () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [date, setDate] = useState<Date>(new Date())
-
-    return <DatePicker mode={'single'} onSelect={setDate} selected={date} />
+  args: {
+    label: 'Date',
   },
 }
 
-export const RangeDatePicker: Story = {
-  args: { mode: 'range', selected: undefined },
-  render: () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [date, setDate] = useState<DateRange>({ from: new Date(), to: new Date() })
-
-    return <DatePicker mode={'range'} onSelect={setDate} selected={date} />
+export const Error: Story = {
+  args: {
+    errorText: 'Error text',
+    label: 'Date',
   },
 }
 
-export const DisabledDatePicker: Story = {
-  args: { mode: 'single', selected: undefined },
-  render: () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [date, setDate] = useState<Date>(new Date())
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+    label: 'Date',
+  },
+}
 
-    return <DatePicker disabled mode={'single'} onSelect={setDate} selected={date} />
+export const NoLabel: Story = {
+  args: {},
+}
+
+export const DateRange: Story = {
+  args: {
+    label: 'Date',
+    range: true,
+  },
+}
+export const DateRangeSelected: Story = {
+  args: {
+    endDate: addDays(new Date(), 5),
+    label: 'Date',
+    range: true,
+    startDate: new Date(),
+  },
+}
+
+export const OnChangeEvent: Story = {
+  args: {
+    label: 'Date',
+    onChange: action('onChange'),
+    onClick: action('onClick'),
   },
 }

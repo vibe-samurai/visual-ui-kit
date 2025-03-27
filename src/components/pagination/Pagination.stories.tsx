@@ -1,6 +1,5 @@
-import { useState } from 'react'
-
 import { Meta, StoryObj } from '@storybook/react'
+import { useState } from 'react'
 
 import { Pagination } from './Pagination'
 
@@ -26,7 +25,7 @@ export const Default: Story = {
     rowsPerPageOptions: [5, 10, 25],
     totalPages: 25,
   },
-  render: args => {
+  render: function Render(args) {
     const [currentPage, setCurrentPage] = useState(args.currentPage || 1)
 
     const handlePageChange = (page: number) => {

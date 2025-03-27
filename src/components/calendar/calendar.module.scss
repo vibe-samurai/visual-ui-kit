@@ -1,0 +1,192 @@
+.dayPicker {
+  padding: 16px 24px;
+}
+
+.caption {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding-top: 4px;
+}
+
+.captionLabel {
+  margin-left: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.day {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+
+  font-size: 16px;
+  text-align: center;
+
+  &[aria-selected] {
+    opacity: 1;
+  }
+
+  &:focus-within {
+    position: relative;
+    z-index: 20;
+  }
+}
+
+.dayButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius: 50%;
+
+  background-color: transparent;
+  outline: none;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--Primary-300);
+  }
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.month {
+  & > * + * {
+    margin-top: 12px;
+  }
+}
+
+.monthCaption {
+  display: flex;
+  align-items: center;
+  height: 36px;
+}
+
+.nav {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+
+  display: flex;
+  align-items: center;
+}
+
+.outside {
+  color: var(--Light-900);
+
+  &[data-outside] {
+    color: var(--Light-900);
+  }
+}
+
+.rangeEnd {
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  background-color: var(--Primary-900);
+
+  &[aria-selected] {
+    color: var(--Light-100);
+  }
+}
+
+.rangeMiddle {
+  border-radius: 0;
+  background-color: var(--Primary-900);
+}
+
+.rangeStart {
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  background-color: var(--Primary-900);
+
+  &[aria-selected] {
+    color: var(--Light-100);
+  }
+}
+
+.selected {
+  border-radius: 50%;
+  background-color: var(--Primary-900);
+
+  &.isRange {
+    border-radius: 0;
+  }
+
+  &:hover {
+    background-color: var(--Primary-700);
+  }
+}
+
+.today {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--Primary-500);
+
+  &:hover {
+    color: var(--Primary-100);
+  }
+
+  &:active {
+    color: var(--Light-100);
+  }
+}
+
+.weekday {
+  font-size: 16px;
+  color: var(--Light-900);
+}
+
+.weekdays {
+  height: 40px;
+}
+
+.weeks {
+  &::before {
+    content: '';
+    display: block;
+    height: 12px;
+  }
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+  margin: 0;
+  border-radius: 50%;
+
+  background-color: var(--Dark-100);
+
+  fill: var(--Light-100);
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--Primary-300);
+  }
+}
+
+.chevron {
+  width: 20px;
+  height: 20px;
+  fill: var(--Light-100);
+}
+
+.weekends {
+  color: var(--Danger-300);
+
+  &[data-outside] {
+    color: var(--Light-900);
+  }
+}

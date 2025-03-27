@@ -1,60 +1,107 @@
+import { Popover, PopoverContent, PopoverTrigger } from '@radix-ui/react-popover'
 import { clsx } from 'clsx'
-import { useState } from 'react'
-import { PropsRangeRequired, PropsSingleRequired } from 'react-day-picker'
+import { format } from 'date-fns'
+import React, { useState } from 'react'
+import { DateRange } from 'react-day-picker'
 
-import { Calendar } from './calendar/Calendar'
-import s from './DatePicker.module.scss'
-import { DateFormatter } from './utils/DateFormatter/DateFormatter'
-import { Popover, PopoverContent, PopoverTrigger } from './utils/Popover/Popover'
-import { validateDate } from './utils/validateDate'
+import { CalendarIcon as CalendarClassic, CalendarOutlineIcon } from '@/assets/icons'
+import { Button, Calendar } from '@/components'
 
-type SingleModeProps = Pick<PropsSingleRequired, 'mode' | 'onSelect' | 'selected'>
-type RangeModeProps = Pick<PropsRangeRequired, 'mode' | 'onSelect' | 'selected'>
-type DatePickerProps = { disabled?: boolean } & (RangeModeProps | SingleModeProps)
-type ErrorMessageProps = {
-  mode: 'range' | 'single'
+import s from './datePicker.module.scss'
+
+interface DatePickerProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onChange'> {
+  date?: Date
+  endDate?: Date
+  errorText?: string
+  label?: string
+  range?: boolean
+  startDate?: Date
+  onChange?: (date: Date | DateRange | undefined) => void
 }
 
-export const DatePicker = ({ disabled = false, ...props }: DatePickerProps) => {
-  const [active, setActivate] = useState(false)
-  const [error, setError] = useState(false)
-
-  const onSelectHandler = (selectedDate: Date) => {
-    setError(!validateDate(selectedDate))
-  }
-
-  const className = clsx(s.button, {
-    [s.button_active]: active,
-    [s.button_disabled]: disabled,
-    [s.button_error]: error,
-    [s.range]: props.mode === 'range',
-    [s.single]: props.mode === 'single',
+export function DatePicker({
+  className,
+  date,
+  endDate,
+  errorText,
+  label,
+  range = false,
+  startDate,
+  onChange,
+  ...props
+}: DatePickerProps) {
+  const [dateRange, setDateRange] = useState<DateRange | undefined>({
+    from: startDate,
+    to: endDate,
   })
 
-  const ErrorMessage = ({ mode }: ErrorMessageProps) => {
-    return mode === 'single' ? (
-      <span className={s.error}>Error</span>
-    ) : (
-      <span className={s.error}>Error, select current month or last month</span>
-    )
+  const [selected, setSelected] = useState<Date | undefined>(date)
+
+  const [open, setOpen] = useState(false)
+
+  const dateFormat = 'dd/LL/yyyy'
+  let popoverText: React.JSX.Element | string
+
+  if (range && dateRange?.from && dateRange?.to) {
+    popoverText = `${format(dateRange.from, dateFormat)} - ${format(dateRange.to, dateFormat)}`
+  } else if (selected) {
+    popoverText = format(selected, dateFormat)
+  } else {
+    popoverText = <span>Pick a date</span>
   }
 
+  const handleSelect = (date: Date | DateRange | undefined) => {
+    if (range) {
+      setDateRange(date as DateRange)
+    } else {
+      setSelected(date as Date)
+    }
+    onChange?.(date)
+  }
+
+  const CalendarIcon = open ? CalendarClassic : CalendarOutlineIcon
+
   return (
-    <Popover onOpenChange={setActivate}>
-      <div className={s.wrapper}>
-        <PopoverTrigger asChild={false} className={className} disabled={disabled}>
-          <DateFormatter
-            className={s.dateFormatter}
-            date={props.selected}
-            disabled={disabled}
-            error={error}
-          />
+    <div className={clsx(s['date-picker'], className)}>
+      <Popover onOpenChange={setOpen}>
+        {label && (
+          <label className={clsx(s.label, props.disabled && s['is-disabled'])}>{label}</label>
+        )}
+        <PopoverTrigger asChild>
+          <Button
+            className={clsx(
+              s.button,
+              range && s['is-range'],
+              open && s['is-open'],
+              errorText && s['is-error']
+            )}
+            id={'date'}
+            variant={'outlined'}
+            {...props}
+          >
+            {popoverText}
+            <CalendarIcon className={clsx(s.icon, errorText && s['is-error'])} />
+          </Button>
         </PopoverTrigger>
-        {error && <ErrorMessage mode={props.mode} />}
-      </div>
-      <PopoverContent align={'start'}>
-        <Calendar onDayClick={onSelectHandler} {...props} required />
-      </PopoverContent>
-    </Popover>
+        <span className={s['error-text']}>{errorText ? errorText : ''}</span>
+        <PopoverContent align={'start'} className={s['popover-content']}>
+          {range ? (
+            <Calendar
+              defaultMonth={dateRange?.from || new Date()}
+              mode={'range'}
+              onSelect={handleSelect}
+              selected={dateRange}
+            />
+          ) : (
+            <Calendar
+              defaultMonth={date}
+              mode={'single'}
+              onSelect={handleSelect}
+              selected={selected}
+            />
+          )}
+        </PopoverContent>
+      </Popover>
+    </div>
   )
 }
