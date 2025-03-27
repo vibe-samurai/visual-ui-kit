@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Button, SelectBox, Typography } from '@/components'
+import { BellOutlineIcon } from '@assets/icons/BellOutlineIcon'
 import { RussianFlagIcon } from '@assets/icons/RussianFlagIcon'
 import { UKFlagIcon } from '@assets/icons/UKFlagIcon'
 import { SelectItem } from '@components/select-box/select-item'
@@ -20,6 +21,8 @@ type Props = {
 }
 
 const Header = ({ isAuth, loginLink, signupLink, LinkComponent }: Props) => {
+  const count = 3
+
   const placeholder = (
     <div className={s['select-value']}>
       <RussianFlagIcon />
@@ -34,6 +37,12 @@ const Header = ({ isAuth, loginLink, signupLink, LinkComponent }: Props) => {
       </Typography>
       <div className={s['functional-container']}>
         <div className={s['select']}>
+          {isAuth && (
+            <div className={s.bell}>
+              <BellOutlineIcon />
+              {count > 0 && <div className={s.count}>{count}</div>}
+            </div>
+          )}
           <SelectBox placeholder={placeholder}>
             <SelectItem value={'en'}>
               <div className={s['select-value']}>
