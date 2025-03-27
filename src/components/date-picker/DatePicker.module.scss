@@ -1,5 +1,6 @@
 .datePicker {
-  display: grid;
+  z-index: 2;
+  background-color: var(--Dark-500);
 }
 
 .label {
@@ -16,7 +17,7 @@
   display: flex;
   justify-content: space-between;
 
-  width: 158px;
+  width: 100%;
   padding: 6px 12px;
   border: 1px solid var(--Dark-300);
 
