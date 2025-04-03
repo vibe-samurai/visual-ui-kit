@@ -64,7 +64,7 @@ const Header = ({ isAuth, loginLink, signupLink, LinkComponent }: Props) => {
               {LinkComponent ? (
                 <LinkComponent href={loginLink || '#'}>Login</LinkComponent>
               ) : (
-                <a href={loginLink || '#'}>Login</a>
+                <a href={loginLink || '#'}>Log In</a>
               )}
             </Button>
             <Button asChild variant={'primary'}>
