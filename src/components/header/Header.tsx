@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Button, SelectBox, Typography } from '@/components'
 import { BellOutlineIcon } from '@assets/icons/BellOutlineIcon'
@@ -18,17 +18,47 @@ type Props = {
   loginLink?: string
   signupLink?: string
   LinkComponent?: React.ComponentType<LinkProps>
+  count?: number
+  defaultLocale: 'ru' | 'en'
 }
 
-const Header = ({ isAuth, loginLink, signupLink, LinkComponent }: Props) => {
-  const count = 3
+const LOCALE_TEXTS = {
+  ru: {
+    login: 'Вход',
+    signup: 'Регистрация',
+    russian: 'Русский',
+    english: 'Английский',
+  },
+  en: {
+    login: 'Log In',
+    signup: 'Sign Up',
+    russian: 'Russian',
+    english: 'English',
+  },
+}
 
-  const placeholder = (
-    <div className={s['select-value']}>
-      <RussianFlagIcon />
-      Russian
-    </div>
-  )
+const Header = ({
+  isAuth,
+  loginLink,
+  signupLink,
+  LinkComponent,
+  count = 0,
+  defaultLocale,
+}: Props) => {
+  const [currentLocale, setCurrentLocale] = useState<'ru' | 'en'>(defaultLocale)
+  const texts = LOCALE_TEXTS[currentLocale]
+
+  const handleLocaleChange = (value: string) => {
+    setCurrentLocale(value as 'ru' | 'en')
+  }
+
+  const renderLink = (href: string | undefined, children: React.ReactNode) => {
+    if (LinkComponent) {
+      return <LinkComponent href={href || '#'}>{children}</LinkComponent>
+    }
+
+    return <a href={href || '#'}>{children}</a>
+  }
 
   return (
     <header className={s['header-container']}>
@@ -43,17 +73,26 @@ const Header = ({ isAuth, loginLink, signupLink, LinkComponent }: Props) => {
               {count > 0 && <div className={s.count}>{count}</div>}
             </div>
           )}
-          <SelectBox placeholder={placeholder}>
+          <SelectBox
+            placeholder={
+              <div className={s['select-value']}>
+                {currentLocale === 'ru' ? <RussianFlagIcon /> : <UKFlagIcon />}
+                {currentLocale === 'ru' ? texts.russian : texts.english}
+              </div>
+            }
+            onValueChange={handleLocaleChange}
+            defaultValue={defaultLocale}
+          >
             <SelectItem value={'en'}>
               <div className={s['select-value']}>
                 <UKFlagIcon />
-                <span>English</span>
+                <span>{texts.english}</span>
               </div>
             </SelectItem>
             <SelectItem value={'ru'}>
               <div className={s['select-value']}>
                 <RussianFlagIcon />
-                <span>Russian</span>
+                <span>{texts.russian}</span>
               </div>
             </SelectItem>
           </SelectBox>
@@ -61,18 +100,10 @@ const Header = ({ isAuth, loginLink, signupLink, LinkComponent }: Props) => {
         {!isAuth && (
           <>
             <Button asChild variant={'link'}>
-              {LinkComponent ? (
-                <LinkComponent href={loginLink || '#'}>Log In</LinkComponent>
-              ) : (
-                <a href={loginLink || '#'}>Log In</a>
-              )}
+              {renderLink(loginLink, texts.login)}
             </Button>
             <Button asChild variant={'primary'}>
-              {LinkComponent ? (
-                <LinkComponent href={signupLink || '#'}>Sign Up</LinkComponent>
-              ) : (
-                <a href={signupLink || '#'}>Sign Up</a>
-              )}
+              {renderLink(signupLink, texts.signup)}
             </Button>
           </>
         )}

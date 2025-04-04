@@ -12,13 +12,14 @@ export default meta
 export const Default: StoryObj<typeof Header> = {
   args: {
     isAuth: false,
-    loginLink: 'auth/login',
-    signupLink: 'auth/signup',
+    defaultLocale: 'en',
   },
 }
 
 export const Auth: StoryObj<typeof Header> = {
   args: {
     isAuth: true,
+    defaultLocale: 'ru',
+    count: 3,
   },
 }
