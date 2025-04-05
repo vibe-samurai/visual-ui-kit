@@ -19,6 +19,7 @@ const DefaultDialogWithState = (args: DialogProps) => {
   function handleModalClosed() {
     setOpen(false)
   }
+
   function handleModalOpened() {
     setOpen(true)
   }
@@ -37,6 +38,7 @@ const TwoButtonsDialogWithState = (args: DialogProps) => {
   function handleModalClosed() {
     setOpen(false)
   }
+
   function handleModalOpened() {
     setOpen(true)
   }
@@ -48,7 +50,6 @@ const TwoButtonsDialogWithState = (args: DialogProps) => {
         {...args}
         onCancelButtonClick={handleModalClosed}
         onClose={handleModalClosed}
-        onConfirmButtonClick={handleModalClosed}
         open={open}
       />
     </div>
@@ -58,11 +59,11 @@ const TwoButtonsDialogWithState = (args: DialogProps) => {
 export const Default: Story = {
   args: {
     open: true,
-    confirmButtonText: 'confirm',
+    confirmButtonText: 'Confirm',
     onConfirmButtonClick: () => {
       alert('Testing')
     },
-    title: 'Modal',
+    title: 'Dialog',
     children: <p>Lorem text</p>,
   },
   render: args => <DefaultDialogWithState {...args} />,
@@ -74,11 +75,10 @@ export const TwoButtons: Story = {
     confirmButtonText: 'Ok',
     cancelButtonText: 'Cancel',
     onConfirmButtonClick: () => {
-      alert('first')
+      alert('Testing')
     },
-    title: 'Modal',
-    children: <p style={{ marginBottom: '18px' }}>Lorem text</p>,
-    invertButtons: false,
+    title: 'Dialog',
+    children: <p>Lorem text</p>,
   },
   render: args => <TwoButtonsDialogWithState {...args} />,
 }
