@@ -3,7 +3,12 @@
   justify-content: flex-end;
 
   &.hasCancelButton {
-    justify-content: space-between;
+    gap: 24px;
+  }
+
+  &.reverseButtonsPosition {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
   }
 
   &.mobile {

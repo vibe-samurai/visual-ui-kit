@@ -52,6 +52,10 @@
 .contentBox {
   position: relative;
   padding: 23px 24px 36px;
+
+  & > *:first-child {
+    margin-bottom: 30px;
+  }
 }
 
 .scrollbar {

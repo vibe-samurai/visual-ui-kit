@@ -12,7 +12,9 @@ export type DialogProps = {
   /** If true, confirm button will be secondary and cancel button will be primary
    * defaults to true
    * */
-  invertButtons?: boolean
+  invertButtonsStyle?: boolean
+  reverseButtonsPosition?: boolean
+  fullWidthButtonMode?: boolean
 
   /** If not provided, onClose will be executed on Cancel click*/
   onCancelButtonClick?: () => void
@@ -23,7 +25,9 @@ export const Dialog = ({
   cancelButtonText,
   children,
   confirmButtonText,
-  invertButtons = true,
+  invertButtonsStyle = false,
+  reverseButtonsPosition = false,
+  fullWidthButtonMode = false,
   onCancelButtonClick,
   onConfirmButtonClick,
   ...rest
@@ -44,35 +48,43 @@ export const Dialog = ({
   }
 
   const classNames = {
-    buttonsBox: clsx(s.buttonsBox, showCancelButton && s.hasCancelButton),
+    buttonsBox: clsx(
+      s.buttonsBox,
+      showCancelButton && s.hasCancelButton,
+      showCancelButton && reverseButtonsPosition && s.reverseButtonsPosition
+    ),
   }
 
-  const confirmButtonVariant = getConfirmButtonVariant(invertButtons, showCancelButton)
-  const cancelButtonVariant = invertButtons ? 'primary' : 'secondary'
+  const confirmButtonVariant = getConfirmButtonVariant(invertButtonsStyle, showCancelButton)
+  const cancelButtonVariant = invertButtonsStyle ? 'outlined' : 'primary'
 
   return (
     <Modal {...rest}>
       {children}
       <div className={classNames.buttonsBox}>
+        <Button
+          onClick={handleConfirmButtonClicked}
+          variant={confirmButtonVariant}
+          fullWidth={fullWidthButtonMode}
+        >
+          {confirmButtonText}
+        </Button>
         {showCancelButton && (
           <Button onClick={handleCancelButtonClicked} variant={cancelButtonVariant}>
             {cancelButtonText}
           </Button>
         )}
-        <Button onClick={handleConfirmButtonClicked} variant={confirmButtonVariant}>
-          {confirmButtonText}
-        </Button>
       </div>
     </Modal>
   )
 }
 
 const getConfirmButtonVariant = (
-  invertButtons: boolean,
+  invertButtonsStyle: boolean,
   showCancelButton: boolean
-): 'primary' | 'secondary' => {
+): 'primary' | 'outlined' => {
   if (showCancelButton) {
-    return invertButtons ? 'secondary' : 'primary'
+    return invertButtonsStyle ? 'primary' : 'outlined'
   }
 
   return 'primary'
