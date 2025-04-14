@@ -13,7 +13,7 @@ type LinkProps = {
   children: React.ReactNode
 }
 
-type Props = {
+export type Props = {
   isAuth: boolean
   loginLink?: string
   signupLink?: string
@@ -47,7 +47,7 @@ const Header = ({
   locale,
   onLocaleChange,
 }: Props) => {
-  const texts = LOCALE_TEXTS[locale]
+  const texts = LOCALE_TEXTS[locale as 'en' | 'ru']
 
   const handleLocaleChange = (lang: string) => {
     onLocaleChange(lang as 'ru' | 'en')
