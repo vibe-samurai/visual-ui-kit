@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { Button, SelectBox, Typography } from '@/components'
 import { BellOutlineIcon } from '@assets/icons/BellOutlineIcon'
@@ -19,7 +19,8 @@ type Props = {
   signupLink?: string
   LinkComponent?: React.ComponentType<LinkProps>
   count?: number
-  defaultLocale: 'ru' | 'en'
+  locale: 'ru' | 'en'
+  onLocaleChange: (lang: 'en' | 'ru') => void
 }
 
 const LOCALE_TEXTS = {
@@ -43,13 +44,13 @@ const Header = ({
   signupLink,
   LinkComponent,
   count = 0,
-  defaultLocale,
+  locale,
+  onLocaleChange,
 }: Props) => {
-  const [currentLocale, setCurrentLocale] = useState<'ru' | 'en'>(defaultLocale)
-  const texts = LOCALE_TEXTS[currentLocale]
+  const texts = LOCALE_TEXTS[locale]
 
-  const handleLocaleChange = (value: string) => {
-    setCurrentLocale(value as 'ru' | 'en')
+  const handleLocaleChange = (lang: string) => {
+    onLocaleChange(lang as 'ru' | 'en')
   }
 
   const renderLink = (href: string | undefined, children: React.ReactNode) => {
@@ -76,12 +77,12 @@ const Header = ({
           <SelectBox
             placeholder={
               <div className={s['select-value']}>
-                {currentLocale === 'ru' ? <RussianFlagIcon /> : <UKFlagIcon />}
-                {currentLocale === 'ru' ? texts.russian : texts.english}
+                {locale === 'ru' ? <RussianFlagIcon /> : <UKFlagIcon />}
+                {locale === 'ru' ? texts.russian : texts.english}
               </div>
             }
             onValueChange={handleLocaleChange}
-            defaultValue={defaultLocale}
+            value={locale}
           >
             <SelectItem value={'en'}>
               <div className={s['select-value']}>
