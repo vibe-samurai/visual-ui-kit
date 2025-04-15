@@ -20,6 +20,7 @@ type Props = {
   LinkComponent?: React.ComponentType<LinkProps>
   count?: number
   defaultLocale: 'ru' | 'en'
+  handleOpenNotifications: (value: boolean) => void
 }
 
 const LOCALE_TEXTS = {
@@ -44,6 +45,7 @@ const Header = ({
   LinkComponent,
   count = 0,
   defaultLocale,
+  handleOpenNotifications,
 }: Props) => {
   const [currentLocale, setCurrentLocale] = useState<'ru' | 'en'>(defaultLocale)
   const texts = LOCALE_TEXTS[currentLocale]
@@ -68,7 +70,7 @@ const Header = ({
       <div className={s['functional-container']}>
         <div className={s['select']}>
           {isAuth && (
-            <div className={s.bell}>
+            <div className={s.bell} onClick={() => handleOpenNotifications}>
               <BellOutlineIcon />
               {count > 0 && <div className={s.count}>{count}</div>}
             </div>
