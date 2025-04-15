@@ -13,7 +13,7 @@ type LinkProps = {
   children: React.ReactNode
 }
 
-type Props = {
+export type Props = {
   isAuth: boolean
   loginLink?: string
   signupLink?: string
@@ -21,6 +21,8 @@ type Props = {
   count?: number
   defaultLocale: 'ru' | 'en'
   handleOpenNotifications: (value: boolean) => void
+  locale: 'ru' | 'en'
+  onLocaleChange: (lang: 'en' | 'ru') => void
 }
 
 const LOCALE_TEXTS = {
@@ -44,14 +46,13 @@ const Header = ({
   signupLink,
   LinkComponent,
   count = 0,
-  defaultLocale,
-  handleOpenNotifications,
+  locale,
+  onLocaleChange,
 }: Props) => {
-  const [currentLocale, setCurrentLocale] = useState<'ru' | 'en'>(defaultLocale)
-  const texts = LOCALE_TEXTS[currentLocale]
+  const texts = LOCALE_TEXTS[locale as 'en' | 'ru']
 
-  const handleLocaleChange = (value: string) => {
-    setCurrentLocale(value as 'ru' | 'en')
+  const handleLocaleChange = (lang: string) => {
+    onLocaleChange(lang as 'ru' | 'en')
   }
 
   const renderLink = (href: string | undefined, children: React.ReactNode) => {
@@ -78,12 +79,12 @@ const Header = ({
           <SelectBox
             placeholder={
               <div className={s['select-value']}>
-                {currentLocale === 'ru' ? <RussianFlagIcon /> : <UKFlagIcon />}
-                {currentLocale === 'ru' ? texts.russian : texts.english}
+                {locale === 'ru' ? <RussianFlagIcon /> : <UKFlagIcon />}
+                {locale === 'ru' ? texts.russian : texts.english}
               </div>
             }
             onValueChange={handleLocaleChange}
-            defaultValue={defaultLocale}
+            value={locale}
           >
             <SelectItem value={'en'}>
               <div className={s['select-value']}>
