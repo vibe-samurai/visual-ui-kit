@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { Button, SelectBox, Typography } from '@/components'
 import { BellOutlineIcon } from '@assets/icons/BellOutlineIcon'
@@ -48,6 +48,7 @@ const Header = ({
   count = 0,
   locale,
   onLocaleChange,
+  handleOpenNotifications,
 }: Props) => {
   const texts = LOCALE_TEXTS[locale as 'en' | 'ru']
 
