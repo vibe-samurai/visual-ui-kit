@@ -20,7 +20,7 @@ export type Props = {
   LinkComponent?: React.ComponentType<LinkProps>
   count?: number
   defaultLocale: 'ru' | 'en'
-  handleOpenNotifications: (value: boolean) => void
+  handleOpenNotifications: (isOpen?: boolean) => void
   locale: 'ru' | 'en'
   onLocaleChange: (lang: 'en' | 'ru') => void
 }
@@ -72,7 +72,7 @@ const Header = ({
       <div className={s['functional-container']}>
         <div className={s['select']}>
           {isAuth && (
-            <div className={s.bell} onClick={() => handleOpenNotifications}>
+            <div className={s.bell} onClick={() => handleOpenNotifications()}>
               <BellOutlineIcon />
               {count > 0 && <div className={s.count}>{count}</div>}
             </div>
