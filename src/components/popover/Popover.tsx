@@ -1,4 +1,5 @@
 import * as PopoverPrimitive from '@radix-ui/react-popover'
+import { clsx } from 'clsx'
 import React, { forwardRef, ReactNode } from 'react'
 
 import s from './Popover.module.scss'
@@ -14,8 +15,7 @@ type ArrowProps = {
 export type PopoverProps = {
   /** Элемент-триггер (колокольчик или бургер) */
   trigger: ReactNode
-  /** Контент попапа (список уведомлений или навигация в бургере-меню) */
-  content: ReactNode
+  children: ReactNode
   /** Референс на триггер (для точного позиционирования) */
   anchorRef?: React.RefObject<HTMLButtonElement | null>
   /** Открыт ли попап */
@@ -85,7 +85,7 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
   (
     {
       trigger,
-      content,
+      children,
       anchorRef,
       isOpen,
       onOpenChange,
@@ -94,7 +94,7 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
       sideOffset = 8,
       arrow = true,
       arrowClassName,
-      contentOffset,
+      contentOffset = { top: 0, left: 0 },
       contentStyle,
       className,
       contentClassName,
@@ -102,10 +102,10 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
     ref
   ) => {
     const mergedContentStyle = {
-      ...(contentOffset?.top && { top: contentOffset.top }),
-      ...(contentOffset?.left && { left: contentOffset.left }),
-      ...(contentOffset?.bottom && { bottom: contentOffset.bottom }),
-      ...(contentOffset?.right && { right: contentOffset.right }),
+      ...(contentOffset?.top !== undefined && { top: contentOffset.top }),
+      ...(contentOffset?.left !== undefined && { left: contentOffset.left }),
+      ...(contentOffset?.bottom !== undefined && { bottom: contentOffset.bottom }),
+      ...(contentOffset?.right !== undefined && { right: contentOffset.right }),
       ...contentStyle,
     }
 
@@ -122,11 +122,11 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
             side={side}
             sideOffset={sideOffset}
             style={mergedContentStyle}
-            className={`${s.content} ${contentClassName}`}
+            className={clsx(s.content, contentClassName)}
           >
-            {content}
+            {children}
             {arrow && (
-              <PopoverPrimitive.Arrow asChild className={arrowClassName || s.arrow}>
+              <PopoverPrimitive.Arrow asChild className={clsx(s.arrow, arrowClassName)}>
                 <CustomArrow {...(typeof arrow === 'object' ? arrow : {})} />
               </PopoverPrimitive.Arrow>
             )}

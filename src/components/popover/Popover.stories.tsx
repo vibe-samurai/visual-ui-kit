@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react'
 import React, { useRef, useState } from 'react'
 
-import { Popover, PopoverProps } from './Popover'
+import { Popover } from './Popover'
 import { BellOutlineIcon } from '../../assets/icons/BellOutlineIcon'
 import { BurgerMenuIcon } from '../../assets/icons/BurgerMenuIcon'
 import { Button } from '../button'
@@ -30,7 +30,6 @@ export const NotificationPopover = () => {
   const [isOpen, setIsOpen] = useState(false)
   const triggerRef = useRef<HTMLButtonElement>(null)
 
-  // Создаём единый элемент для триггера
   const triggerElement = (
     <div style={{ position: 'relative', display: 'inline-block' }}>
       <BellOutlineIcon />
@@ -73,29 +72,28 @@ export const NotificationPopover = () => {
           </button>
         }
         anchorRef={triggerRef}
-        content={
-          <div style={{ padding: '16px', width: '350px' }}>
-            <Typography variant={'h3'} style={{ marginBottom: '16px' }}>
-              Уведомления
-            </Typography>
-            <div>
-              <div style={{ padding: '8px 0', borderBottom: '1px solid #e2e8f0' }}>
-                Новое сообщение
-              </div>
-              <div style={{ padding: '8px 0', borderBottom: '1px solid #e2e8f0' }}>
-                Обновление системы
-              </div>
-              <div style={{ padding: '8px 0' }}>Напоминание</div>
-            </div>
-          </div>
-        }
         isOpen={isOpen}
         onOpenChange={setIsOpen}
         side={'bottom'}
         align={'end'}
         sideOffset={10}
         contentOffset={{ top: -28, left: -3 }}
-      />
+      >
+        <div style={{ padding: '16px', width: '350px' }}>
+          <Typography variant={'h3'} style={{ marginBottom: '16px' }}>
+            Уведомления
+          </Typography>
+          <div>
+            <div style={{ padding: '8px 0', borderBottom: '1px solid #e2e8f0' }}>
+              Новое сообщение
+            </div>
+            <div style={{ padding: '8px 0', borderBottom: '1px solid #e2e8f0' }}>
+              Обновление системы
+            </div>
+            <div style={{ padding: '8px 0' }}>Напоминание</div>
+          </div>
+        </div>
+      </Popover>
     </div>
   )
 }
@@ -133,30 +131,6 @@ const BurgerMenuPopover = () => {
           </button>
         }
         anchorRef={triggerRef}
-        content={
-          <nav
-            style={{
-              padding: '16px',
-              height: '100vh',
-              boxSizing: 'border-box',
-            }}
-          >
-            <ul style={{ listStyle: 'none', padding: '8px 32px', margin: 0 }}>
-              <li style={{ padding: '32px 0' }}>
-                <a href={'#'}>Главная</a>
-              </li>
-              <li style={{ padding: '32px 0' }}>
-                <a href={'#'}>Профиль</a>
-              </li>
-              <li style={{ padding: '32px 0' }}>
-                <a href={'#'}>Настройки</a>
-              </li>
-              <li style={{ padding: '32px 0' }}>
-                <a href={'#'}>Выйти</a>
-              </li>
-            </ul>
-          </nav>
-        }
         isOpen={isOpen}
         onOpenChange={setIsOpen}
         side={'right'}
@@ -168,46 +142,63 @@ const BurgerMenuPopover = () => {
           ...fullScreenPopoverStyle,
           ...(isOpen ? openStateStyle : {}),
         }}
-      />
+      >
+        <nav
+          style={{
+            padding: '16px',
+            height: '100vh',
+            boxSizing: 'border-box',
+          }}
+        >
+          <ul style={{ listStyle: 'none', padding: '8px 32px', margin: 0 }}>
+            <li style={{ padding: '32px 0' }}>
+              <a href={'#'}>Главная</a>
+            </li>
+            <li style={{ padding: '32px 0' }}>
+              <a href={'#'}>Профиль</a>
+            </li>
+            <li style={{ padding: '32px 0' }}>
+              <a href={'#'}>Настройки</a>
+            </li>
+            <li style={{ padding: '32px 0' }}>
+              <a href={'#'}>Выйти</a>
+            </li>
+          </ul>
+        </nav>
+      </Popover>
     </div>
   )
 }
 
-const InteractivePopover = (args: PopoverProps) => {
+const InteractivePopover = () => {
   const [isOpen, setIsOpen] = useState(false)
   const triggerRef = useRef<HTMLButtonElement>(null)
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', padding: '50px' }}>
       <Popover
-        {...args}
         trigger={
           <Button ref={triggerRef} variant={'primary'}>
             Открыть попап
           </Button>
         }
         anchorRef={triggerRef}
-        content={
-          <div style={{ padding: '16px', minWidth: '200px' }}>
-            <Typography variant={'h3'} style={{ marginBottom: '16px' }}>
-              Пример контента
-            </Typography>
-            <p>Здесь может быть любое содержимое</p>
-          </div>
-        }
         isOpen={isOpen}
         onOpenChange={setIsOpen}
         align={'center'}
         side={'bottom'}
         sideOffset={40}
         contentOffset={{ top: -28, left: -3 }}
-      />
+      >
+        <div style={{ padding: '16px', minWidth: '200px' }}>
+          <Typography variant={'h3'} style={{ marginBottom: '16px' }}>
+            Пример контента
+          </Typography>
+          <p>Здесь может быть любое содержимое</p>
+        </div>
+      </Popover>
     </div>
   )
-}
-
-export const Notifications: Story = {
-  render: () => <NotificationPopover />,
 }
 
 export const BurgerMenu: Story = {
@@ -215,10 +206,5 @@ export const BurgerMenu: Story = {
 }
 
 export const Interactive: Story = {
-  args: {
-    side: 'bottom',
-    align: 'end',
-    sideOffset: 8,
-  },
-  render: args => <InteractivePopover {...args} />,
+  render: () => <InteractivePopover />,
 }
