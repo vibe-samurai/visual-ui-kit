@@ -1,5 +1,5 @@
 import { clsx } from 'clsx'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 import { CrossWhiteIcon } from '@/assets/icons'
@@ -19,27 +19,22 @@ export const Alertpopup = (props: PropsType): React.ReactElement => {
   const [open, setOpen] = useState(true)
   const [alertMessage, setAlertMessage] = useState<null | string>(message)
 
-  const handleAlertPopupClose = (): void => {
+  const handleAlertPopupClose = useCallback((): void => {
     setOpen(false)
     setAlertMessage(null)
-    if (callback) {
-      callback()
-    }
-  }
+    callback?.()
+  }, []) // Пустой массив зависимостей, так как callback не должен меняться
 
   useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>
+    if (!message) return
 
-    if (message) {
-      setOpen(true)
+    setOpen(true)
+    setAlertMessage(message)
 
-      timer = setTimeout(() => {
-        handleAlertPopupClose()
-      }, duration)
-    }
+    const timer = setTimeout(handleAlertPopupClose, duration)
 
     return () => clearTimeout(timer)
-  }, [])
+  }, [duration, handleAlertPopupClose, message])
 
   return createPortal(
     open && (

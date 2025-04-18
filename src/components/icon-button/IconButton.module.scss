@@ -1,0 +1,35 @@
+.button {
+  cursor: pointer;
+
+  display: flex;
+  place-content: center center;
+
+  border: none;
+
+  background-color: transparent;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(1);
+  }
+
+  svg {
+    width: var(--size);
+    height: var(--size);
+  }
+
+  &.active {
+    path {
+      fill: var(--Primary-500);
+    }
+  }
+
+  &:not(.colorful) {
+    path {
+      fill: var(--Light-100);
+    }
+  }
+}

@@ -13,48 +13,19 @@
 
   .functional-container {
     display: flex;
-    gap: 24px;
     align-items: center;
-    justify-content: space-between;
+
+    .notification-bell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 45px;
+    }
 
     .select {
       display: flex;
-      gap: 45px;
       align-items: center;
-
       width: 163px;
-      margin-right: 12px;
-
-      .bell {
-        cursor: pointer;
-
-        position: relative;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        .count {
-          position: absolute;
-          top: 0;
-          left: 11px;
-
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          width: 13px;
-          height: 13px;
-          padding: 3px;
-          border-radius: 50%;
-
-          font-size: 10px;
-          font-weight: 500;
-          line-height: 8px;
-
-          background: var(--Danger-500);
-        }
-      }
 
       .select-value {
         display: flex;

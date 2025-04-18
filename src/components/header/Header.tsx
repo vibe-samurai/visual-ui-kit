@@ -1,9 +1,7 @@
 import React from 'react'
 
 import { Button, SelectBox, Typography } from '@/components'
-import { BellOutlineIcon } from '@assets/icons/BellOutlineIcon'
-import { RussianFlagIcon } from '@assets/icons/RussianFlagIcon'
-import { UKFlagIcon } from '@assets/icons/UKFlagIcon'
+import { RussianFlagIcon, UKFlagIcon } from '@assets/icons'
 import { SelectItem } from '@components/select-box/select-item'
 
 import s from './Header.module.scss'
@@ -18,11 +16,9 @@ export type Props = {
   loginLink?: string
   signupLink?: string
   LinkComponent?: React.ComponentType<LinkProps>
-  count?: number
-  defaultLocale: 'ru' | 'en'
-  handleOpenNotifications: (isOpen?: boolean) => void
   locale: 'ru' | 'en'
   onLocaleChange: (lang: 'en' | 'ru') => void
+  bellChildren?: React.ReactNode
 }
 
 const LOCALE_TEXTS = {
@@ -45,23 +41,18 @@ const Header = ({
   loginLink,
   signupLink,
   LinkComponent,
-  count = 0,
   locale,
   onLocaleChange,
-  handleOpenNotifications,
+  bellChildren,
 }: Props) => {
-  const texts = LOCALE_TEXTS[locale as 'en' | 'ru']
-
-  const handleLocaleChange = (lang: string) => {
-    onLocaleChange(lang as 'ru' | 'en')
-  }
+  const texts = LOCALE_TEXTS[locale]
 
   const renderLink = (href: string | undefined, children: React.ReactNode) => {
-    if (LinkComponent) {
-      return <LinkComponent href={href || '#'}>{children}</LinkComponent>
-    }
-
-    return <a href={href || '#'}>{children}</a>
+    return LinkComponent ? (
+      <LinkComponent href={href || '#'}>{children}</LinkComponent>
+    ) : (
+      <a href={href || '#'}>{children}</a>
+    )
   }
 
   return (
@@ -70,13 +61,9 @@ const Header = ({
         Visual-Vibe
       </Typography>
       <div className={s['functional-container']}>
+        {bellChildren && <div className={s['notification-bell']}>{bellChildren}</div>}
+
         <div className={s['select']}>
-          {isAuth && (
-            <div className={s.bell} onClick={() => handleOpenNotifications()}>
-              <BellOutlineIcon />
-              {count > 0 && <div className={s.count}>{count}</div>}
-            </div>
-          )}
           <SelectBox
             placeholder={
               <div className={s['select-value']}>
@@ -84,7 +71,7 @@ const Header = ({
                 {locale === 'ru' ? texts.russian : texts.english}
               </div>
             }
-            onValueChange={handleLocaleChange}
+            onValueChange={lang => onLocaleChange(lang as 'en' | 'ru')}
             value={locale}
           >
             <SelectItem value={'en'}>
@@ -101,6 +88,7 @@ const Header = ({
             </SelectItem>
           </SelectBox>
         </div>
+
         {!isAuth && (
           <>
             <Button asChild variant={'link'}>

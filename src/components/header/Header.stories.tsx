@@ -1,7 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import { Header, Props } from './Header'
+import { NotificationPopover } from '../popover/Popover.stories'
 
 const meta: Meta<typeof Header> = {
   title: 'Components/Header',
@@ -38,6 +39,6 @@ export const Auth: StoryObj<typeof Header> = {
   args: {
     isAuth: true,
     locale: 'ru',
-    count: 3,
+    bellChildren: <NotificationPopover />,
   },
 }
