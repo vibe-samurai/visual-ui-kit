@@ -91,7 +91,7 @@ const Header = ({
 
         {!isAuth && (
           <>
-            <Button asChild variant={'link'}>
+            <Button asChild variant={'link'} className={s['button-login']}>
               {renderLink(loginLink, texts.login)}
             </Button>
             <Button asChild variant={'primary'}>
