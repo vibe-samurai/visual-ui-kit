@@ -1,0 +1,55 @@
+.root {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid var(--Dark-500);
+}
+
+.head {
+  background-color: var(--Dark-500);
+}
+
+.headCell {
+  padding: 6px 24px;
+
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-m);
+  text-align: left;
+}
+
+.row {
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--Dark-500);
+  }
+}
+
+.cell {
+  padding: 6px 24px;
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-m);
+
+  .moreButton {
+    all: unset;
+
+    cursor: default;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 24px;
+    height: 24px;
+
+    color: var(--Light-100);
+
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--Primary-500);
+    }
+
+    &.clickable {
+      cursor: pointer;
+    }
+  }
+}
