@@ -1,7 +1,7 @@
 'use client'
 
 import clsx from 'clsx'
-import React, { useState } from 'react'
+import React from 'react'
 
 import styles from './Pagination.module.scss'
 
@@ -9,7 +9,7 @@ export type PaginationProps = {
   currentPage: number
   onPageChange: (page: number) => void
   onRowsPerPageChange: (rowsPerPage: number) => void
-  rowsPerPage?: number
+  rowsPerPage: number
   rowsPerPageOptions: number[]
   totalPages: number
 }
@@ -18,11 +18,10 @@ export const Pagination = ({
   currentPage,
   onPageChange,
   onRowsPerPageChange,
+  rowsPerPage,
   rowsPerPageOptions,
   totalPages,
 }: PaginationProps) => {
-  const [selectedRowsPerPage, setSelectedRowsPerPage] = useState(rowsPerPageOptions[0])
-
   const getVisiblePages = () => {
     const pages: (number | string)[] = []
     const maxVisiblePages = 5
@@ -57,7 +56,6 @@ export const Pagination = ({
   const handleRowsPerPageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const rowsPerPage = parseInt(event.target.value, 10)
 
-    setSelectedRowsPerPage(rowsPerPage)
     onRowsPerPageChange(rowsPerPage)
     onPageChange(1)
   }
@@ -103,7 +101,7 @@ export const Pagination = ({
         <label htmlFor={'rows-per-page'}>Show</label>
         <select
           id={'rows-per-page'}
-          value={selectedRowsPerPage}
+          value={rowsPerPage}
           onChange={handleRowsPerPageChange}
           className={styles.select}
         >
